@@ -1,0 +1,10 @@
+export default defineNuxtPlugin(() => {
+  const { locale, theme } = useSitePreferences()
+  const themeCookie = useCookie('site-theme', { sameSite: 'lax', maxAge: 31536000 })
+  const languageCookie = useCookie('site-language', { sameSite: 'lax', maxAge: 31536000 })
+  watch(theme, value => { themeCookie.value = value }, { flush: 'sync' })
+  watch(locale, value => { languageCookie.value = value }, { flush: 'sync' })
+  const { profile } = useSiteContent()
+  useHead({ htmlAttrs: { lang: () => locale.value === 'zh' ? 'zh-CN' : 'en' } })
+  useSeoMeta({ description: () => profile.value.introduction })
+})
