@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { profile } from '~/content/site'
+const { profile } = useSiteContent()
+const { t } = useSitePreferences()
 
 const route = useRoute()
 const links = [
@@ -12,20 +13,21 @@ const links = [
 <template>
   <div class="site-shell">
     <aside class="site-rail">
-      <NuxtLink to="/" class="wordmark" aria-label="Alex Chen, home">AC<span class="wordmark-dot">.</span></NuxtLink>
+      <NuxtLink to="/" class="wordmark" :aria-label="t('Alex Chen, home')">AC<span class="wordmark-dot">.</span></NuxtLink>
       <div class="rail-middle">
-        <span class="rail-caption">Independent practice<br>Brooklyn, NY</span>
-        <nav aria-label="Main navigation" class="site-nav">
+        <span class="rail-caption">{{ t("Independent practice") }}<br>{{ t("Brooklyn, NY") }}</span>
+        <nav :aria-label="t('Main navigation')" class="site-nav">
           <NuxtLink v-for="(link, index) in links" :key="link.to" :to="link.to" :class="{ active: route.path === link.to || (link.to === '/blogs' && route.path.startsWith('/blogs/')) }">
-            <span class="nav-number">0{{ index + 1 }}</span>{{ link.label }}
+            <span class="nav-number">0{{ index + 1 }}</span>{{ t(link.label) }}
           </NuxtLink>
         </nav>
       </div>
-      <a class="rail-email" :href="`mailto:${profile.email}`">Let's talk <span aria-hidden="true">↗</span></a>
+      <SitePreferences />
+      <a class="rail-email" :href="`mailto:${profile.email}`">{{ t("Let's talk") }} <span aria-hidden="true">↗</span></a>
     </aside>
     <div class="page-area">
       <main><NuxtPage /></main>
-      <footer class="site-footer"><span>© {{ new Date().getFullYear() }} Alex Chen</span><span>Made with intention.</span><a href="mailto:hello@alexchen.design">Get in touch ↗</a></footer>
+      <footer class="site-footer"><span>© {{ new Date().getFullYear() }} Alex Chen</span><span>{{ t("Made with intention.") }}</span><a :href="`mailto:${profile.email}`">{{ t("Get in touch ↗") }}</a></footer>
     </div>
   </div>
 </template>
