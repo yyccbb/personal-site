@@ -23,7 +23,7 @@ const links = [
         </nav>
       </div>
       <SitePreferences />
-      <a class="rail-email" :href="`mailto:${profile.email}`">{{ t("Let's talk") }} <span aria-hidden="true">↗</span></a>
+      <a class="rail-email" :href="`mailto:${profile.email}`">{{ t("Let's connect") }} <span aria-hidden="true">↗</span></a>
     </aside>
     <div class="page-area">
       <main><NuxtPage /></main>

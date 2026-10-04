@@ -16,9 +16,9 @@ Five earlier visual directions remain available on separate branches:
 
 Stop the server before switching designs. Each version includes About (`/`), Blogs (`/blogs`), two full posts, and Reading (`/reading`). The profile and posts are example content, ready to replace with your details.
 
-On `main`, Blogs starts with **All** and can filter by **Research** or **Travelling**. Reading filters by **All**, **Book**, **Paper**, or **Article**. Both use the same filter component and styling. Blog cards scroll horizontally using swipe, a trackpad, keyboard focus, or arrow buttons.
+On `main`, Blogs starts with **All** and can filter by **Research** or **Travelling**. Reading filters by **All**, **Book**, **Paper**, or **Article**. Both use the same filter component and styling. Blog cards scroll horizontally using swipe, a trackpad, left/right arrow keys anywhere on the Blogs page, or arrow buttons. Three display-only preview cards show the scrolling layout without linking to empty articles; their titles are defined in the Blogs page.
 
-Blog images are deliberately blank. To add one, put your image in `public/` and add an optional `image: { src: '/your-image.jpg', alt: 'A description of your image' }` to the post in both content files. The frame keeps a 16:9 ratio. Categories are stable lowercase keys (`research` and `travelling`), with translated display labels.
+Blog images are deliberately blank. To add one, put your image in `public/` and add an optional `image: { src: '/your-image.jpg', alt: 'A description of your image' }` to the post in both content files. The shorter 5:2 frame sits flush against the left edge with a 24px inset on the right. Categories are stable lowercase keys (`research` and `travelling`), with translated display labels.
 
 Every design includes an appearance button that cycles **System → Light → Dark → System**, and an English/简体中文 language button. System is the default and tracks browser appearance changes. Cookies retain explicit preferences and provide the correct language during server rendering. A small inline script applies the appearance before rendering to avoid a bright flash. No preference library or translation service is required.
 

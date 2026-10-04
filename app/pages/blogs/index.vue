@@ -1,14 +1,33 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components'
+
 const { posts, profile } = useSiteContent()
 const { t } = useSitePreferences()
+const previews = [
+  { slug: 'preview-tools', title: 'Small tools, useful discoveries', category: 'research' },
+  { slug: 'preview-weekend', title: 'A weekend without a checklist', category: 'travelling' },
+  { slug: 'preview-experiment', title: 'Questions for the next experiment', category: 'research' },
+] as const
+const cards = computed(() => [
+  ...posts.value.map(post => ({ ...post, isPreview: false })),
+  ...previews.map(post => ({
+    ...post,
+    title: t(post.title),
+    date: t('Coming soon'),
+    excerpt: '',
+    readingTime: t('Preview card'),
+    image: undefined,
+    isPreview: true,
+  })),
+])
 const category = ref('all')
 const categories = ['all', 'research', 'travelling'] as const
 const options = computed(() => categories.map(value => ({
   value,
   label: t(value === 'all' ? 'All' : value),
-  count: posts.value.filter(post => value === 'all' || post.category === value).length,
+  count: cards.value.filter(post => value === 'all' || post.category === value).length,
 })))
-const visiblePosts = computed(() => posts.value.filter(post => category.value === 'all' || post.category === category.value))
+const visiblePosts = computed(() => cards.value.filter(post => category.value === 'all' || post.category === category.value))
 const postList = useTemplateRef<HTMLElement>('post-list')
 const canScrollLeft = ref(false)
 const canScrollRight = ref(false)
@@ -24,18 +43,35 @@ function updateScrollControls() {
 function scrollPosts(direction: -1 | 1) {
   const list = postList.value
   if (!list) return
-  list.scrollBy({
-    left: direction * list.clientWidth * .8,
+  const firstCard = list.children[0] as HTMLElement | undefined
+  const secondCard = list.children[1] as HTMLElement | undefined
+  if (!firstCard) return
+  const step = secondCard ? secondCard.offsetLeft - firstCard.offsetLeft : firstCard.offsetWidth
+  list.scrollTo({
+    left: Math.min(list.scrollWidth - list.clientWidth, Math.max(0, list.scrollLeft + direction * step)),
     behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
   })
+}
+
+function onPageKeydown(event: KeyboardEvent) {
+  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+  const target = event.target
+  if (target instanceof HTMLElement && (target.isContentEditable || target.closest('input, textarea, select, [role="textbox"]'))) return
+  event.preventDefault()
+  scrollPosts(event.key === 'ArrowLeft' ? -1 : 1)
 }
 
 onMounted(() => {
   updateScrollControls()
   resizeObserver = new ResizeObserver(updateScrollControls)
   if (postList.value) resizeObserver.observe(postList.value)
+  window.addEventListener('keydown', onPageKeydown)
 })
-onBeforeUnmount(() => resizeObserver?.disconnect())
+onBeforeUnmount(() => {
+  resizeObserver?.disconnect()
+  window.removeEventListener('keydown', onPageKeydown)
+})
 watch(visiblePosts, async () => {
   await nextTick()
   postList.value?.scrollTo({ left: 0, behavior: 'instant' })
@@ -69,20 +105,27 @@ useHead({ title: () => `${t('Blogs')} — ${profile.value.name}` })
       class="post-list"
       tabindex="0"
       :aria-label="t('Blog posts')"
+      aria-keyshortcuts="ArrowLeft ArrowRight"
       aria-live="polite"
       @scroll.passive="updateScrollControls"
     >
-      <NuxtLink v-for="post in visiblePosts" :key="post.slug" :to="`/blogs/${post.slug}`" class="post-card">
+      <component
+        :is="post.isPreview ? 'article' : NuxtLink"
+        v-for="post in visiblePosts"
+        :key="post.slug"
+        :to="post.isPreview ? undefined : `/blogs/${post.slug}`"
+        class="post-card"
+      >
         <div class="post-card-image">
           <img v-if="post.image?.src" :src="post.image.src" :alt="post.image.alt" loading="lazy" />
         </div>
         <div class="post-card-copy">
           <div class="post-card-top"><span>{{ t(post.category) }}</span><span>{{ post.date }}</span></div>
           <h2>{{ post.title }}</h2>
-          <p>{{ post.excerpt }}</p>
-          <div class="post-card-bottom"><span>{{ post.readingTime }}</span><span class="round-arrow" aria-hidden="true">↗</span></div>
+          <p v-if="post.excerpt">{{ post.excerpt }}</p>
+          <div class="post-card-bottom"><span>{{ post.readingTime }}</span><span v-if="!post.isPreview" class="round-arrow" aria-hidden="true">↗</span></div>
         </div>
-      </NuxtLink>
+      </component>
     </section>
     <p class="end-note">{{ t('More notes are on their way. Thanks for reading.') }}</p>
   </div>
