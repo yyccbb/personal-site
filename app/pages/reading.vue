@@ -1,17 +1,56 @@
 <script setup lang="ts">
-const { reading } = useSiteContent()
+const { reading, profile } = useSiteContent()
 const { t } = useSitePreferences()
+const filter = ref<string>('All')
+const kinds = ['All', 'Book', 'Paper', 'Article'] as const
+const filters = computed(() => kinds.map(kind => ({
+  value: kind,
+  label: t(kind),
+  count: kind === 'All' ? reading.value.length : reading.value.filter(item => item.kind === kind).length,
+})))
+const visibleItems = computed(() => reading.value.filter(item => filter.value === 'All' || item.kind === filter.value))
 
-useHead({ title: () => t('Reading') + ' — Alex Chen' })
-const current = computed(() => reading.value.filter(item => item.status === 'Reading'))
-const finished = computed(() => reading.value.filter(item => item.status === 'Finished'))
+useHead({ title: () => `${t('Reading')} — ${profile.value.name}` })
 </script>
 
 <template>
   <div class="editorial-page reading-page">
-    <div class="eyebrow"><span class="eyebrow-line" />{{ t("Library / 003") }}</div>
-    <header class="page-intro"><p class="small-intro">{{ t("The open shelf") }}</p><h1>{{ t("What I'm") }}<br><em>{{ t("reading.") }}</em></h1><p>{{ t("A changing collection of books and articles that have given me something to think about.") }}</p></header>
-    <section class="reading-group"><div class="reading-heading"><h2>{{ t("On my desk") }}</h2><span>{{ t("Currently reading / 0") }}{{ current.length }}</span></div><div v-for="item in current" :key="item.title" class="reading-entry"><span class="reading-kind">{{ t(item.kind) }} · {{ item.year }}</span><div><h3>{{ item.title }}</h3><p>{{ item.creator }}</p></div><p class="reading-note">{{ item.note }}</p></div></section>
-    <section class="reading-group"><div class="reading-heading"><h2>{{ t("Recently finished") }}</h2><span>{{ t("From the archive / 0") }}{{ finished.length }}</span></div><div v-for="item in finished" :key="item.title" class="reading-entry"><span class="reading-kind">{{ t(item.kind) }} · {{ item.year }}</span><div><h3>{{ item.title }}</h3><p>{{ item.creator }}</p></div><p class="reading-note">{{ item.note }}</p></div></section>
+    <div class="eyebrow"><span class="eyebrow-line" />{{ t('Library / 003') }}</div>
+    <header class="page-intro">
+      <p class="small-intro">{{ t('Notes from the shelf') }}</p>
+      <h1>{{ t('The reading') }}<br><em>{{ t('shelf.') }}</em></h1>
+      <p>{{ t('Books, papers, and articles I’m exploring, with a few thoughts to return to.') }}</p>
+    </header>
+
+    <section class="library-section" :aria-label="t('Reading list')">
+      <div class="collection-toolbar">
+        <div class="collection-filter-group">
+          <p class="section-index">{{ t('Browse by type') }}</p>
+          <ContentFilters v-model="filter" :options="filters" :label="t('Filter reading list')" />
+        </div>
+        <div class="library-caption" aria-live="polite" aria-atomic="true">
+          <span>{{ t('Reading notes') }}</span>
+          <span>{{ String(visibleItems.length).padStart(2, '0') }}</span>
+        </div>
+      </div>
+      <div class="library-list">
+        <article v-for="item in visibleItems" :key="item.url" class="library-entry">
+          <div class="library-marker" aria-hidden="true">
+            <span>{{ t(item.kind) }}</span>
+            <strong>{{ item.year }}</strong>
+            <span class="library-marker-plus">＋</span>
+          </div>
+          <div class="library-copy">
+            <p class="library-meta">{{ t(item.kind) }} <span aria-hidden="true">·</span> {{ item.year }}</p>
+            <h2>{{ item.title }}</h2>
+            <p class="library-creator">{{ item.creator }}</p>
+            <p class="library-note">{{ item.note }}</p>
+            <a class="library-source" :href="item.url" :aria-label="`${t('Open source')}: ${item.title}`">
+              {{ t('Open source') }} <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
   </div>
 </template>

@@ -1,6 +1,7 @@
 /** CMS-ready content shapes. Replace the local sources with an adapter later. */
 export interface BlogSection { heading: string; paragraphs: string[] }
-export interface BlogPost { slug: string; title: string; date: string; category: string; readingTime: string; excerpt: string; sections: BlogSection[] }
+export type BlogCategory = 'research' | 'travelling'
+export interface BlogPost { slug: string; title: string; date: string; category: BlogCategory; image?: { src: string; alt: string }; readingTime: string; excerpt: string; sections: BlogSection[] }
 export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; year: string; note: string; url: string }
 export interface Profile { name: string; role: string; location: string; email: string; introduction: string; biography: string; aside: string }
 export interface SiteContent { profile: Profile; posts: BlogPost[]; reading: ReadingItem[] }
@@ -20,9 +21,9 @@ export const englishContent: SiteContent = {
       "slug": "what-a-good-evaluation-misses",
       "title": "What a good evaluation can still miss",
       "date": "September 18, 2026",
-      "category": "Research",
+      "category": "research",
       "readingTime": "5 min read",
-      "excerpt": "A research note on failure cases, useful benchmarks, and looking beyond a single score.",
+      "excerpt": "A few reflections on new AI capabilities, useful benchmarks, and what a single score leaves out.",
       "sections": [
         {
           "heading": "Start with the question",
@@ -41,25 +42,32 @@ export const englishContent: SiteContent = {
       ]
     },
     {
-      "slug": "a-research-workflow-that-scales",
-      "title": "A research workflow that stays small",
+      "slug": "a-slower-way-to-see-a-city",
+      "title": "A slower way to see a city",
       "date": "August 29, 2026",
-      "category": "Engineering",
+      "category": "travelling",
       "readingTime": "4 min read",
-      "excerpt": "Simple habits for experiments, readable code, and notes your future self can actually use.",
+      "excerpt": "Side streets, a quiet café, and the things I noticed when I stopped trying to fit everything into a trip.",
       "sections": [
         {
-          "heading": "Leave a trail",
+          "heading": "Leave space in the day",
           "paragraphs": [
-            "At the start of an experiment, I save the question, the configuration, and the command I ran. I want to be able to return weeks later and understand the choices without reconstructing them from memory.",
-            "A plain text note beside the code is often enough. I record the interesting result, the surprising failure, and one thing I would try next. The format matters less than keeping it close to the work."
+            "On a recent trip to Kyoto, I arrived with a map full of saved places. By the second morning, I had already started measuring the day by how many pins I could turn into visits. It felt strangely like clearing a task list.",
+            "I left the afternoon open instead. I walked along a quiet street, stopped for coffee, and sat long enough to notice the small routines around me: someone opening a shop, bicycles passing the window, a delivery arriving next door. None of it needed to become an attraction."
           ]
         },
         {
-          "heading": "Build the smallest useful tool",
+          "heading": "A different kind of attention",
           "paragraphs": [
-            "It is easy for research tooling to become a second project. I try to wait until a task has repeated a few times before I automate it, and then give the tool just enough structure to be dependable.",
-            "This leaves more room for the experiment itself. A small script, a clear plot, and a useful note can carry a surprisingly large amount of understanding."
+            "I still used my phone to find my way, but I stopped consulting it at every corner. Having less of a plan made me pay more attention to where I actually was. I remember the light on a wall and a conversation over lunch more clearly than the places I had hurried through the day before.",
+            "Back at my desk, that difference stayed with me. Research also has moments when the next result becomes the only thing in view. Sometimes a little unstructured time helps me notice the question I had been walking past."
+          ]
+        },
+        {
+          "heading": "What I brought home",
+          "paragraphs": [
+            "My notes from the trip are short: a few photos, the name of the café, and one sentence about each day. They are enough to bring back how the place felt without turning the trip into another project to document.",
+            "For the next trip, I will still save a few places I want to see. I will also leave a blank afternoon on the calendar. It turned out to be the part I remember most."
           ]
         }
       ]
