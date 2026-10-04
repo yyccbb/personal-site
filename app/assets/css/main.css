@@ -347,7 +347,6 @@ button {
   flex:0 0 clamp(260px,34%,390px);
   min-width:0;
   border:1px solid var(--tone-cbc4b8);
-  background:var(--tone-e8ded1);
   display:flex;
   flex-direction:column;
   scroll-snap-align:start;
@@ -371,7 +370,7 @@ button {
   padding:24px
 }
 .post-card:hover {
-  background:var(--tone-e6c7b6);
+  background:var(--tone-e8ded1);
   transform:translateY(-6px);
   box-shadow:8px 8px 0 var(--tone-d3c4b4)
 }
