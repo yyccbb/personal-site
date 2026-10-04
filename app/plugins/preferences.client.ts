@@ -6,6 +6,10 @@ export default defineNuxtPlugin(() => {
     document.documentElement.dataset.theme = resolved
     document.documentElement.style.colorScheme = resolved
   }
-  watch(theme, applyTheme, { immediate: true })
-  media.addEventListener('change', applyTheme)
+  watch(theme, applyTheme, { immediate: true, flush: 'sync' })
+  media.addEventListener('change', () => {
+    // A system appearance change resumes automatic following after a toggle.
+    theme.value = 'system'
+    applyTheme()
+  })
 })

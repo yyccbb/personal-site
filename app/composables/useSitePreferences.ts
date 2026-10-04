@@ -14,7 +14,12 @@ export function useSitePreferences() {
     useCookie<SiteLanguage>('site-language', { readonly: true, watch: false }).value === 'zh' ? 'zh' : 'en',
   )
   const t = (key: string) => locale.value === 'zh' ? (chineseCopy[key] ?? key) : (englishCopy[key] ?? key)
-  const cycleTheme = () => { theme.value = theme.value === 'system' ? 'light' : theme.value === 'light' ? 'dark' : 'system' }
+  // System following is automatic; the button only toggles the rendered mode.
+  const toggleTheme = () => {
+    if (import.meta.client) {
+      theme.value = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+    }
+  }
   const toggleLanguage = () => { locale.value = locale.value === 'en' ? 'zh' : 'en' }
-  return { theme, locale, t, cycleTheme, toggleLanguage }
+  return { theme, locale, t, toggleTheme, toggleLanguage }
 }

@@ -1,10 +1,15 @@
 :root { color-scheme: light; }
 :root[data-theme="dark"] { color-scheme: dark; }
 .site-preferences { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.preference-button { display: inline-flex; justify-content: center; align-items: center; gap: 7px; min-height: 36px; padding: 8px 11px; border: 1px solid var(--control-border, #a3aba4); border-radius: 6px; background: var(--control-bg, transparent); color: var(--control-fg, inherit); font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 11px; line-height: 1.2; letter-spacing: .02em; white-space: nowrap; cursor: pointer; transition: background .2s, transform .2s; }
-.preference-button:hover { background: var(--control-hover, #82938326); transform: translateY(-1px); }
-.preference-button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.language-button > span:first-child { font-size: 11px; opacity: .65; }
+.preference-button { justify-content: center; width: 40px; height: 40px; padding: 10px; }
+.preference-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.preference-button .theme-icon-dark { display: none; }
+:root[data-theme="dark"] .preference-button .theme-icon-light { display: none; }
+:root[data-theme="dark"] .preference-button .theme-icon-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .preference-button .theme-icon-light { display: none; }
+  :root:not([data-theme]) .preference-button .theme-icon-dark { display: block; }
+}
 :focus-visible { outline: 2px solid var(--focus-color, #719786); outline-offset: 5px; }
 html[lang="zh-CN"] h1, html[lang="zh-CN"] h2, html[lang="zh-CN"] h3 { letter-spacing: .01em; line-height: 1.22; font-family: "Songti SC", "Noto Serif CJK SC", "STSong", Georgia, serif; }
 html[lang="zh-CN"] p { line-height: 1.8; }
