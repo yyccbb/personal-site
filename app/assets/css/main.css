@@ -347,6 +347,7 @@ button {
   flex:0 0 clamp(260px,34%,390px);
   min-width:0;
   border:1px solid var(--tone-cbc4b8);
+  background:var(--tone-e8ded1);
   display:flex;
   flex-direction:column;
   scroll-snap-align:start;
@@ -355,7 +356,7 @@ button {
 .post-card-image {
   width:calc(100% - 24px);
   aspect-ratio:5 / 2;
-  background:var(--tone-e8ded1)
+  background:var(--tone-89857c)
 }
 .post-card-image img {
   width:100%;
