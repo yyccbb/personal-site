@@ -1,0 +1,41 @@
+/* Shared roles for the editorial site. Inactive navigation and image blanks
+   intentionally use the same color; card shadows remain a separate role. */
+:root {
+  --color-background: #f4f0e9;
+  --color-text: #2e302c;
+  --color-body: #55574f;
+  --color-muted: #66685f;
+  --color-inactive: #89857c;
+  --color-accent: #a56850;
+  --color-border: #cbc4b8;
+  --color-surface: #e8ded1;
+  --color-shadow: #d3c4b4;
+  --color-selection: #e0b19c;
+  --color-selection-text: #272822;
+}
+
+:root[data-theme="dark"] {
+  --color-background: #171b18;
+  --color-text: #e8e8df;
+  --color-body: #b9c7b6;
+  --color-muted: #a4b09f;
+  --color-inactive: #a4b09f;
+  --color-accent: #d5a88f;
+  --color-border: #485745;
+  --color-surface: #263024;
+  --color-shadow: #61755d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-background: #171b18;
+    --color-text: #e8e8df;
+    --color-body: #b9c7b6;
+    --color-muted: #a4b09f;
+    --color-inactive: #a4b09f;
+    --color-accent: #d5a88f;
+    --color-border: #485745;
+    --color-surface: #263024;
+    --color-shadow: #61755d;
+  }
+}

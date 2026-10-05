@@ -10,7 +10,7 @@
   :root:not([data-theme]) .preference-button .theme-icon-light { display: none; }
   :root:not([data-theme]) .preference-button .theme-icon-dark { display: block; }
 }
-:focus-visible { outline: 2px solid var(--focus-color, #719786); outline-offset: 5px; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 5px; }
 html[lang="zh-CN"] h1, html[lang="zh-CN"] h2, html[lang="zh-CN"] h3 { letter-spacing: .01em; line-height: 1.22; font-family: "Songti SC", "Noto Serif CJK SC", "STSong", Georgia, serif; }
 html[lang="zh-CN"] p { line-height: 1.8; }
 html[lang="zh-CN"] .studio-site h1, html[lang="zh-CN"] .studio-site h2, html[lang="zh-CN"] .studio-site h3 { font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }

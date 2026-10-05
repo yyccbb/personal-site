@@ -3,7 +3,7 @@
   align-items: center;
   gap: 14px;
   padding: 12px 0;
-  color: var(--tone-817e75);
+  color: var(--color-muted);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: .14em;
@@ -22,7 +22,7 @@
   align-items: start;
   gap: 24px;
   padding: 35px 0 38px;
-  border-bottom: 1px solid var(--tone-d7d0c5);
+  border-bottom: 1px solid var(--color-border);
 }
 .library-marker {
   display: flex;
@@ -30,9 +30,9 @@
   justify-content: space-between;
   height: 140px;
   padding: 12px 10px;
-  border: 1px solid var(--tone-cbc4b8);
-  background: var(--tone-e8ded1);
-  color: var(--tone-a56850);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-accent);
 }
 .library-marker span {
   font-size: 9px;
@@ -57,7 +57,7 @@
   display: flex;
   gap: 9px;
   margin: 0 0 13px;
-  color: var(--tone-a56850);
+  color: var(--color-accent);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .12em;
@@ -73,13 +73,13 @@
 }
 .library-copy .library-creator {
   margin: 0 0 20px;
-  color: var(--tone-77776e);
+  color: var(--color-muted);
   font-size: 11px;
   line-height: 1.65;
 }
 .library-copy .library-note {
   margin: 0 0 24px;
-  color: var(--tone-5f6259);
+  color: var(--color-body);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 17px;
   line-height: 1.65;
@@ -89,18 +89,18 @@
   align-items: baseline;
   gap: 15px;
   padding-bottom: 5px;
-  border-bottom: 1px solid var(--tone-cbc4b8);
-  color: var(--tone-a56850);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-accent);
   font-size: 11px;
   font-weight: 600;
   transition: color .2s, border-color .2s;
 }
 .library-source:hover {
-  color: var(--tone-2e302c);
+  color: var(--color-text);
   border-color: currentColor;
 }
 .library-source:focus-visible {
-  outline: 2px solid var(--tone-b77961);
+  outline: 2px solid var(--color-accent);
   outline-offset: 5px;
 }
 @media (max-width: 1100px) {

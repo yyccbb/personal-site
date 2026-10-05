@@ -25,3 +25,21 @@ On `main`, the icon-only appearance button toggles directly between **Light** an
 English and Chinese content live in `app/content/site.ts` and `app/content/zh.ts`. Interface translations live in `app/content/translations.ts`; `useSiteContent` supplies reactive content for either language. A future Storyblok adapter can return the same `SiteContent` shape. Reading metadata links to primary sources.
 
 `npm run build` verifies a production build. The project has no server API, database, analytics, or CMS dependency. Nuxt's standard build output can be deployed to Vercel later.
+
+## Color scheme
+
+The current site uses 11 shared color roles in `app/assets/css/colors.css`. Main text also supplies filled button backgrounds; the page background supplies their text. Focus outlines share the accent. Inactive navigation and blank blog image areas remain paired, and the card hover shadow keeps its own color.
+
+| Role | Light | Dark |
+| --- | --- | --- |
+| Page / idle cards / inverse text | `#F4F0E9` | `#171B18` |
+| Primary text / filled controls | `#2E302C` | `#E8E8DF` |
+| Body text / button icons | `#55574F` | `#B9C7B6` |
+| Metadata / captions / footer | `#66685F` | `#A4B09F` |
+| Inactive tabs / blank images | `#89857C` | `#A4B09F` |
+| Accent / focus outlines | `#A56850` | `#D5A88F` |
+| Borders / dividers | `#CBC4B8` | `#485745` |
+| Hover surfaces / reading markers / portrait backing | `#E8DED1` | `#263024` |
+| Card hover shadow | `#D3C4B4` | `#61755D` |
+| Text selection background | `#E0B19C` | `#E0B19C` |
+| Text selection foreground | `#272822` | `#272822` |

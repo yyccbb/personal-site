@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "./colors.css";
 :root {
   font-family:Arial,Helvetica,sans-serif;
-  color:var(--tone-2e302c);
-  background:var(--tone-f4f0e9);
+  color:var(--color-text);
+  background:var(--color-background);
   font-synthesis:none
 }
 * {
@@ -22,8 +23,8 @@ button {
   font:inherit
 }
 ::selection {
-  background:var(--tone-e0b19c);
-  color:var(--tone-272822)
+  background:var(--color-selection);
+  color:var(--color-selection-text)
 }
 .site-shell {
   min-height:100vh;
@@ -31,7 +32,7 @@ button {
   grid-template-columns:210px minmax(0,1fr)
 }
 .site-rail {
-  border-right:1px solid var(--tone-d7d1c6);
+  border-right:1px solid var(--color-border);
   min-height:100vh;
   padding:36px 30px;
   display:flex;
@@ -49,7 +50,7 @@ button {
   width:max-content
 }
 .wordmark-dot {
-  color:var(--tone-bc7e66)
+  color:var(--color-accent)
 }
 .rail-caption {
   display:block;
@@ -57,7 +58,7 @@ button {
   line-height:1.5;
   text-transform:uppercase;
   letter-spacing:.18em;
-  color:var(--tone-837f76);
+  color:var(--color-muted);
   margin-bottom:42px
 }
 .site-nav {
@@ -72,26 +73,26 @@ button {
   font-family:Georgia,serif;
   font-size:26px;
   padding:8px 0;
-  color:var(--tone-89857c);
+  color:var(--color-inactive);
   transition:color .25s,transform .25s
 }
 .site-nav a:hover {
-  color:var(--tone-2e302c);
+  color:var(--color-text);
   transform:translateX(4px)
 }
 .site-nav a.active {
-  color:var(--tone-2e302c)
+  color:var(--color-text)
 }
 .nav-number {
   font-family:Arial,sans-serif;
   font-size:10px;
   letter-spacing:.12em;
-  color:var(--tone-b47761)
+  color:var(--color-accent)
 }
 .rail-email {
   font-size:12px;
   font-weight:600;
-  border-bottom:1px solid var(--tone-2e302c);
+  border-bottom:1px solid var(--color-text);
   padding-bottom:7px;
   width:max-content
 }
@@ -115,7 +116,7 @@ button {
   font-size:11px;
   letter-spacing:.2em;
   text-transform:uppercase;
-  color:var(--tone-837f76);
+  color:var(--color-muted);
   display:flex;
   align-items:center;
   gap:14px
@@ -123,7 +124,7 @@ button {
 .eyebrow-line {
   width:28px;
   height:1px;
-  background:var(--tone-b77d66);
+  background:var(--color-accent);
   display:inline-block
 }
 .about-hero {
@@ -138,7 +139,7 @@ button {
   font-size:13px;
   letter-spacing:.15em;
   text-transform:uppercase;
-  color:var(--tone-a56850);
+  color:var(--color-accent);
   margin:0 0 28px;
   font-weight:600
 }
@@ -155,7 +156,7 @@ button {
 }
 .hero-copy h1 em,.page-intro h1 em,.about-details h2 em {
   font-weight:400;
-  color:var(--tone-b77961)
+  color:var(--color-accent)
 }
 .hero-lede {
   font-family:Georgia,serif;
@@ -168,8 +169,8 @@ button {
   display:inline-flex;
   align-items:center;
   gap:35px;
-  background:var(--tone-30322e);
-  color:var(--tone-fffaf1);
+  background:var(--color-text);
+  color:var(--color-background);
   border-radius:100px;
   padding:15px 20px 15px 24px;
   font-size:12px;
@@ -177,20 +178,20 @@ button {
   transition:background .25s,transform .25s
 }
 .pill-link:hover {
-  background:var(--tone-a56850);
+  background:var(--color-accent);
   transform:translateY(-2px)
 }
 .text-link {
   font-size:12px;
   font-weight:600;
   padding:15px 6px;
-  border-bottom:1px solid var(--tone-2e302c);
+  border-bottom:1px solid var(--color-text);
   display:inline-flex;
   gap:22px;
   transition:color .25s
 }
 .text-link:hover {
-  color:var(--tone-a56850)
+  color:var(--color-accent)
 }
 .portrait-frame {
   margin:0;
@@ -202,7 +203,7 @@ button {
   width:100%;
   max-height:660px;
   object-fit:cover;
-  box-shadow:18px 22px 0 var(--tone-e8e0d4)
+  box-shadow:18px 22px 0 var(--color-surface)
 }
 .portrait-frame figcaption {
   display:flex;
@@ -211,11 +212,11 @@ button {
   font-size:10px;
   text-transform:uppercase;
   letter-spacing:.12em;
-  color:var(--tone-817c73);
+  color:var(--color-muted);
   margin-top:22px
 }
 .section-divider {
-  border-top:1px solid var(--tone-cfc8bb)
+  border-top:1px solid var(--color-border)
 }
 .about-details {
   display:grid;
@@ -227,7 +228,7 @@ button {
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.18em;
-  color:var(--tone-a56850);
+  color:var(--color-accent);
   margin:0
 }
 .section-index span {
@@ -245,10 +246,10 @@ button {
   font-size:16px;
   line-height:1.85;
   max-width:670px;
-  color:var(--tone-575951)
+  color:var(--color-body)
 }
 .detail-row {
-  border-bottom:1px solid var(--tone-d6d0c5);
+  border-bottom:1px solid var(--color-border);
   display:flex;
   justify-content:space-between;
   gap:20px;
@@ -258,10 +259,10 @@ button {
 }
 .detail-row:first-of-type {
   margin-top:35px;
-  border-top:1px solid var(--tone-d6d0c5)
+  border-top:1px solid var(--color-border)
 }
 .detail-row span {
-  color:var(--tone-8a857b)
+  color:var(--color-muted)
 }
 .detail-row strong {
   font-weight:500
@@ -280,17 +281,17 @@ button {
   grid-template-columns:175px 1fr 26px;
   gap:25px;
   align-items:center;
-  border-bottom:1px solid var(--tone-d7d0c5);
+  border-bottom:1px solid var(--color-border);
   padding:27px 0;
   transition:padding .25s,color .25s
 }
 .latest-row:hover {
   padding-left:12px;
-  color:var(--tone-a56850)
+  color:var(--color-accent)
 }
 .latest-row>span:first-child {
   font-size:11px;
-  color:var(--tone-8a857b)
+  color:var(--color-muted)
 }
 .latest-row strong {
   font-family:Georgia,serif;
@@ -306,14 +307,14 @@ button {
   display:flex;
   gap:20px;
   justify-content:space-between;
-  border-top:1px solid var(--tone-d7d1c6);
+  border-top:1px solid var(--color-border);
   font-size:10px;
   text-transform:uppercase;
   letter-spacing:.14em;
-  color:var(--tone-827e75)
+  color:var(--color-muted)
 }
 .site-footer a {
-  color:var(--tone-2e302c)
+  color:var(--color-text)
 }
 .listing-page,.reading-page {
   min-height:calc(100vh - 80px)
@@ -330,7 +331,7 @@ button {
   line-height:1.5;
   max-width:560px;
   margin:34px 0 0;
-  color:var(--tone-55574f)
+  color:var(--color-body)
 }
 .post-list {
   display:flex;
@@ -341,12 +342,12 @@ button {
   scroll-padding:1px;
   padding:12px 10px 28px 1px;
   scrollbar-width:thin;
-  scrollbar-color:var(--tone-b77961) var(--tone-e8e0d4)
+  scrollbar-color:var(--color-accent) var(--color-surface)
 }
 .post-card {
   flex:0 0 clamp(260px,34%,390px);
   min-width:0;
-  border:1px solid var(--tone-cbc4b8);
+  border:1px solid var(--color-border);
   display:flex;
   flex-direction:column;
   scroll-snap-align:start;
@@ -355,7 +356,7 @@ button {
 .post-card-image {
   width:calc(100% - 24px);
   aspect-ratio:5 / 2;
-  background:var(--tone-89857c)
+  background:var(--color-inactive)
 }
 .post-card-image img {
   width:100%;
@@ -370,9 +371,9 @@ button {
   padding:24px
 }
 .post-card:hover {
-  background:var(--tone-e8ded1);
+  background:var(--color-surface);
   transform:translateY(-6px);
-  box-shadow:8px 8px 0 var(--tone-d3c4b4)
+  box-shadow:8px 8px 0 var(--color-shadow)
 }
 .post-card-top,.post-card-bottom {
   display:flex;
@@ -381,7 +382,7 @@ button {
   font-size:10px;
   text-transform:uppercase;
   letter-spacing:.14em;
-  color:var(--tone-77766e)
+  color:var(--color-muted)
 }
 .post-card h2 {
   font-family:Georgia,serif;
@@ -394,7 +395,7 @@ button {
 .post-card-copy>p {
   font-size:13px;
   line-height:1.6;
-  color:var(--tone-5d5e55);
+  color:var(--color-body);
   max-width:480px;
   margin:0 0 24px
 }
@@ -405,17 +406,17 @@ button {
 .round-arrow {
   width:38px;
   height:38px;
-  border:1px solid var(--tone-66685f);
+  border:1px solid var(--color-border);
   border-radius:50%;
   display:grid;
   place-items:center;
   font-size:17px;
-  color:var(--tone-30322e)
+  color:var(--color-text)
 }
 .end-note {
   font-family:Georgia,serif;
   font-style:italic;
-  color:var(--tone-8e887e);
+  color:var(--color-muted);
   margin-top:55px
 }
 .listing-page .page-intro,.reading-page .page-intro {
@@ -429,7 +430,7 @@ button {
   justify-content:space-between;
   align-items:flex-end;
   gap:24px;
-  border-bottom:1px solid var(--tone-d7d0c5);
+  border-bottom:1px solid var(--color-border);
   padding-bottom:22px;
   margin-bottom:22px
 }
@@ -445,10 +446,10 @@ button {
   display:inline-flex;
   align-items:center;
   gap:14px;
-  border:1px solid var(--tone-cbc4b8);
+  border:1px solid var(--color-border);
   border-radius:3px;
   background:transparent;
-  color:var(--tone-55574f);
+  color:var(--color-body);
   padding:11px 15px;
   min-height:40px;
   font-size:12px;
@@ -456,13 +457,13 @@ button {
   transition:background .2s,color .2s,border-color .2s
 }
 .filter-button:hover,.preference-button:hover {
-  background:var(--tone-e8e0d4);
-  border-color:var(--tone-b77961)
+  background:var(--color-surface);
+  border-color:var(--color-accent)
 }
 .filter-button.active {
-  background:var(--tone-30322e);
-  color:var(--tone-fffaf1);
-  border-color:var(--tone-30322e)
+  background:var(--color-text);
+  color:var(--color-background);
+  border-color:var(--color-text)
 }
 .filter-count {
   font-size:10px;
@@ -476,22 +477,22 @@ button {
 }
 .scroll-caption {
   font-size:10px;
-  color:var(--tone-837f76);
+  color:var(--color-muted);
   margin-right:12px;
   white-space:nowrap
 }
 .scroll-controls button {
-  border:1px solid var(--tone-cbc4b8);
+  border:1px solid var(--color-border);
   border-radius:3px;
   background:transparent;
-  color:var(--tone-2e302c);
+  color:var(--color-text);
   width:40px;
   height:40px;
   cursor:pointer;
   transition:background .2s
 }
 .scroll-controls button:hover:enabled {
-  background:var(--tone-e8e0d4)
+  background:var(--color-surface)
 }
 .scroll-controls button:disabled {
   opacity:.3;
@@ -500,7 +501,7 @@ button {
 .back-link {
   display:inline-block;
   font-size:12px;
-  border-bottom:1px solid var(--tone-2e302c);
+  border-bottom:1px solid var(--color-text);
   padding:0 0 8px;
   margin-bottom:90px
 }
@@ -515,7 +516,7 @@ button {
   font-family:Georgia,serif;
   font-size:clamp(21px,2.5vw,30px);
   line-height:1.45;
-  color:var(--tone-5f6159);
+  color:var(--color-body);
   max-width:700px
 }
 .article-meta {
@@ -524,12 +525,12 @@ button {
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.15em;
-  color:var(--tone-827e75);
+  color:var(--color-muted);
   margin-top:55px
 }
 .article-rule {
   height:1px;
-  background:var(--tone-bdb7ab);
+  background:var(--color-border);
   margin:45px 0 80px
 }
 .article-body {
@@ -550,7 +551,7 @@ button {
 .article-body p {
   font-size:17px;
   line-height:1.9;
-  color:var(--tone-4f514b);
+  color:var(--color-body);
   margin:0 0 23px
 }
 .article-body p:first-of-type::first-letter {
@@ -559,17 +560,17 @@ button {
   line-height:0
 }
 .article-end {
-  border-top:1px solid var(--tone-ccc6bb);
+  border-top:1px solid var(--color-border);
   margin-top:90px;
   padding-top:25px;
   display:flex;
   justify-content:space-between;
   gap:20px;
   font-size:12px;
-  color:var(--tone-77776e)
+  color:var(--color-muted)
 }
 .article-end a {
-  color:var(--tone-a56850)
+  color:var(--color-accent)
 }
 @media(max-width:1050px) {
   .site-shell {
@@ -602,7 +603,7 @@ button {
     align-items:center;
     padding:17px 22px;
     border-right:0;
-    border-bottom:1px solid var(--tone-d7d1c6)
+    border-bottom:1px solid var(--color-border)
   }
   .wordmark {
     font-size:32px
@@ -728,131 +729,6 @@ button {
   }
   .article-end {
     flex-direction:column
-  }
-}
-:root {
-  --tone-272822: #272822;
-  --tone-2e302c: #2e302c;
-  --tone-2f312c: #2f312c;
-  --tone-30322e: #30322e;
-  --tone-4f514b: #4f514b;
-  --tone-55574f: #55574f;
-  --tone-575951: #575951;
-  --tone-5d5e55: #5d5e55;
-  --tone-5f6159: #5f6159;
-  --tone-5f6259: #5f6259;
-  --tone-66685f: #66685f;
-  --tone-77766e: #77766e;
-  --tone-77776e: #77776e;
-  --tone-817c73: #817c73;
-  --tone-817e75: #817e75;
-  --tone-827e75: #827e75;
-  --tone-837f76: #837f76;
-  --tone-89857c: #89857c;
-  --tone-8a857b: #8a857b;
-  --tone-8e887e: #8e887e;
-  --tone-a56850: #a56850;
-  --tone-b47761: #b47761;
-  --tone-b77961: #b77961;
-  --tone-b77d66: #b77d66;
-  --tone-bc7e66: #bc7e66;
-  --tone-bdb7ab: #bdb7ab;
-  --tone-cbc4b8: #cbc4b8;
-  --tone-ccc6bb: #ccc6bb;
-  --tone-cfc8bb: #cfc8bb;
-  --tone-d3c4b4: #d3c4b4;
-  --tone-d6d0c5: #d6d0c5;
-  --tone-d7d0c5: #d7d0c5;
-  --tone-d7d1c6: #d7d1c6;
-  --tone-e0b19c: #e0b19c;
-  --tone-e6c7b6: #e6c7b6;
-  --tone-e8ded1: #e8ded1;
-  --tone-e8e0d4: #e8e0d4;
-  --tone-f4f0e9: #f4f0e9;
-  --tone-fffaf1: #fffaf1;
-}
-:root[data-theme="dark"] {
-  --tone-272822: #272822;
-  --tone-2e302c: #e8e8df;
-  --tone-2f312c: #dce5d6;
-  --tone-30322e: #e5e8dc;
-  --tone-4f514b: #bbcab6;
-  --tone-55574f: #b9c7b6;
-  --tone-575951: #b3c2af;
-  --tone-5d5e55: #b5c3b0;
-  --tone-5f6159: #b6c7ad;
-  --tone-5f6259: #b0c2a9;
-  --tone-66685f: #93a38d;
-  --tone-77766e: #a2b29c;
-  --tone-77776e: #a3b79e;
-  --tone-817c73: #a3b2a0;
-  --tone-817e75: #a0b29b;
-  --tone-827e75: #a3b2a0;
-  --tone-837f76: #a2aea1;
-  --tone-89857c: #a4b09f;
-  --tone-8a857b: #9eae9b;
-  --tone-8e887e: #9cab94;
-  --tone-a56850: #dca88d;
-  --tone-b47761: #d6a58e;
-  --tone-b77961: #d5a88f;
-  --tone-b77d66: #c89980;
-  --tone-bc7e66: #d3a089;
-  --tone-bdb7ab: #415140;
-  --tone-cbc4b8: #485745;
-  --tone-ccc6bb: #415140;
-  --tone-cfc8bb: #3d493c;
-  --tone-d3c4b4: #61755d;
-  --tone-d6d0c5: #3c493d;
-  --tone-d7d0c5: #3c493d;
-  --tone-d7d1c6: #3d463d;
-  --tone-e0b19c: #e0b19c;
-  --tone-e6c7b6: #3f4b38;
-  --tone-e8ded1: #263024;
-  --tone-e8e0d4: #2a342a;
-  --tone-f4f0e9: #171b18;
-  --tone-fffaf1: #1c231c;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --tone-272822: #272822;
-    --tone-2e302c: #e8e8df;
-    --tone-2f312c: #dce5d6;
-    --tone-30322e: #e5e8dc;
-    --tone-4f514b: #bbcab6;
-    --tone-55574f: #b9c7b6;
-    --tone-575951: #b3c2af;
-    --tone-5d5e55: #b5c3b0;
-    --tone-5f6159: #b6c7ad;
-    --tone-5f6259: #b0c2a9;
-    --tone-66685f: #93a38d;
-    --tone-77766e: #a2b29c;
-    --tone-77776e: #a3b79e;
-    --tone-817c73: #a3b2a0;
-    --tone-817e75: #a0b29b;
-    --tone-827e75: #a3b2a0;
-    --tone-837f76: #a2aea1;
-    --tone-89857c: #a4b09f;
-    --tone-8a857b: #9eae9b;
-    --tone-8e887e: #9cab94;
-    --tone-a56850: #dca88d;
-    --tone-b47761: #d6a58e;
-    --tone-b77961: #d5a88f;
-    --tone-b77d66: #c89980;
-    --tone-bc7e66: #d3a089;
-    --tone-bdb7ab: #415140;
-    --tone-cbc4b8: #485745;
-    --tone-ccc6bb: #415140;
-    --tone-cfc8bb: #3d493c;
-    --tone-d3c4b4: #61755d;
-    --tone-d6d0c5: #3c493d;
-    --tone-d7d0c5: #3c493d;
-    --tone-d7d1c6: #3d463d;
-    --tone-e0b19c: #e0b19c;
-    --tone-e6c7b6: #3f4b38;
-    --tone-e8ded1: #263024;
-    --tone-e8e0d4: #2a342a;
-    --tone-f4f0e9: #171b18;
-    --tone-fffaf1: #1c231c;
   }
 }
 .site-rail {
