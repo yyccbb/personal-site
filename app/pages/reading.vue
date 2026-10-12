@@ -8,9 +8,26 @@ const filters = computed(() => kinds.map(kind => ({
   label: t(kind),
   count: kind === 'All' ? reading.value.length : reading.value.filter(item => item.kind === kind).length,
 })))
-const visibleItems = computed(() => reading.value.filter(item => filter.value === 'All' || item.kind === filter.value))
+const visibleItems = computed(() => reading.value
+  .filter(item => filter.value === 'All' || item.kind === filter.value)
+  .sort((a, b) => {
+    if (a.status !== b.status) return a.status === 'Reading' ? -1 : 1
+    return (b.finishedAt ?? '').localeCompare(a.finishedAt ?? '')
+  }))
+const readingList = useTemplateRef<HTMLElement>('reading-list')
 
-useHead({ title: () => `${t('Reading')} — ${profile.value.name}` })
+async function goToCurrentReads() {
+  filter.value = 'All'
+  await nextTick()
+  const list = readingList.value
+  if (!list) return
+  window.scrollTo({
+    top: list.getBoundingClientRect().top + window.scrollY - 24,
+    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+  })
+}
+
+useHead({ title: () => `${t('Reading')} — ${profile.value.displayName}` })
 </script>
 
 <template>
@@ -33,23 +50,25 @@ useHead({ title: () => `${t('Reading')} — ${profile.value.name}` })
           <span>{{ String(visibleItems.length).padStart(2, '0') }}</span>
         </div>
       </div>
-      <div class="library-list">
-        <article v-for="item in visibleItems" :key="item.url" class="library-entry">
-          <div class="library-marker" aria-hidden="true">
-            <span>{{ t(item.kind) }}</span>
-            <strong>{{ item.year }}</strong>
-            <span class="library-marker-plus">＋</span>
-          </div>
-          <div class="library-copy">
-            <p class="library-meta">{{ t(item.kind) }} <span aria-hidden="true">·</span> {{ item.year }}</p>
-            <h2>{{ item.title }}</h2>
-            <p class="library-creator">{{ item.creator }}</p>
-            <p class="library-note">{{ item.note }}</p>
-            <a class="library-source" :href="item.url" :aria-label="`${t('Open source')}: ${item.title}`">
-              {{ t('Open source') }} <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </article>
+      <div class="library-layout">
+        <ReadingTimeline :items="visibleItems" :list-element="readingList" @current-reads="goToCurrentReads" />
+        <div ref="reading-list" class="library-list">
+          <article v-for="item in visibleItems" :key="item.url" class="library-entry">
+            <div class="library-marker">
+              <img v-if="item.image" :src="item.image.src" :alt="item.image.alt" loading="lazy" :class="{ 'library-logo': item.kind === 'Paper' }" />
+              <span v-else class="library-text-symbol" aria-hidden="true">¶</span>
+              <span class="library-kind">{{ t(item.kind) }}</span>
+            </div>
+            <div class="library-copy">
+              <h2>{{ item.title }}</h2>
+              <p class="library-creator">{{ item.creator }}</p>
+              <p class="library-note">{{ item.note }}</p>
+              <a v-if="!item.isSample" class="library-source" :href="item.url" :aria-label="`${t('Open source')}: ${item.title}`">
+                {{ t('Open source') }} <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </div>

@@ -2,7 +2,7 @@
 const { posts, profile } = useSiteContent()
 const { t } = useSitePreferences()
 
-useHead({ title: () => t('About') + ' — Alex Chen' })
+useHead({ title: () => `${t('About')} — ${profile.value.displayName}` })
 </script>
 
 <template>
@@ -10,8 +10,15 @@ useHead({ title: () => t('About') + ' — Alex Chen' })
     <div class="eyebrow"><span class="eyebrow-line" />{{ t("About / 001") }}</div>
     <section class="about-hero">
       <div class="hero-copy">
-        <p class="small-intro">{{ t("Hello, I'm Alex.") }}</p>
-        <h1>{{ t("Making room") }}<br>{{ t("for") }} <em>{{ t("better") }}</em><br>{{ t("things.") }}</h1>
+        <p class="small-intro profile-greeting">{{ t("Hello, I'm {name}.").replace('{name}', profile.displayName) }}</p>
+        <h1 class="personal-tags">
+          <span v-for="(tag, index) in profile.tags" :key="tag.id" class="personal-tag" :class="`personal-tag--${tag.id}`" :style="{ '--tag-delay': `${index * 120}ms` }">
+            <span class="personal-tag-card">
+              <span class="personal-tag-index" aria-hidden="true">0{{ index + 1 }}</span>
+              <span class="personal-tag-label">{{ tag.label }}</span>
+            </span>
+          </span>
+        </h1>
         <p class="hero-lede">{{ profile.introduction }}</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <NuxtLink class="pill-link" to="/blogs">{{ t("Explore my writing") }} <span>↗</span></NuxtLink>
@@ -19,8 +26,8 @@ useHead({ title: () => t('About') + ' — Alex Chen' })
         </div>
       </div>
       <figure class="portrait-frame">
-        <img src="/profile-editorial.svg" :alt="t('Portrait placeholder for Alex Chen')" />
-        <figcaption><span>{{ t("Fig. 01 — A portrait to come") }}</span><span>{{ t("Brooklyn, 2026") }}</span></figcaption>
+        <img :src="profile.image.src" :alt="profile.image.alt" width="1280" height="853" />
+        <figcaption>{{ t("Fig. 01 — Portrait") }}</figcaption>
       </figure>
     </section>
     <section class="about-details section-divider">

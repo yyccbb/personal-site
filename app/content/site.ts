@@ -2,13 +2,21 @@
 export interface BlogSection { heading: string; paragraphs: string[] }
 export type BlogCategory = 'research' | 'travelling'
 export interface BlogPost { slug: string; title: string; date: string; category: BlogCategory; image?: { src: string; alt: string }; readingTime: string; excerpt: string; sections: BlogSection[] }
-export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; year: string; note: string; url: string }
-export interface Profile { name: string; role: string; location: string; email: string; introduction: string; biography: string; aside: string }
+export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; finishedAt?: string; isSample?: boolean; image?: { src: string; alt: string }; note: string; url: string }
+export interface ProfileTag { id: string; label: string }
+export interface Profile { name: string; displayName: string; tags: ProfileTag[]; image: { src: string; alt: string }; role: string; location: string; email: string; introduction: string; biography: string; aside: string }
 export interface SiteContent { profile: Profile; posts: BlogPost[]; reading: ReadingItem[] }
 
 export const englishContent: SiteContent = {
   "profile": {
-    "name": "Alex Chen",
+    "name": "YU Chenbo",
+    "displayName": "Chenbo",
+    "tags": [
+      { "id": "research", "label": "Researcher" },
+      { "id": "photography", "label": "Photographer" },
+      { "id": "music", "label": "Violinist at heart" }
+    ],
+    "image": { "src": "/profile.jpg", "alt": "Portrait of YU Chenbo" },
     "role": "AI researcher & technologist",
     "location": "Research, wherever it happens",
     "email": "hello@example.com",
@@ -79,7 +87,7 @@ export const englishContent: SiteContent = {
       "creator": "Ian Goodfellow, Yoshua Bengio & Aaron Courville",
       "kind": "Book",
       "status": "Reading",
-      "year": "2016",
+      "image": { "src": "/reading/deep-learning.jpg", "alt": "Deep Learning book cover" },
       "note": "Revisiting the foundations, especially optimization and representation learning.",
       "url": "https://www.deeplearningbook.org/"
     },
@@ -88,7 +96,7 @@ export const englishContent: SiteContent = {
       "creator": "Martin Kleppmann",
       "kind": "Book",
       "status": "Reading",
-      "year": "2017",
+      "image": { "src": "/reading/designing-data-intensive-applications.jpg", "alt": "Designing Data-Intensive Applications book cover" },
       "note": "Reading the first edition with research infrastructure and reproducible experiments in mind.",
       "url": "https://martin.kleppmann.com/2017/03/27/designing-data-intensive-applications.html"
     },
@@ -97,7 +105,8 @@ export const englishContent: SiteContent = {
       "creator": "Ashish Vaswani et al.",
       "kind": "Paper",
       "status": "Finished",
-      "year": "2017",
+      "finishedAt": "2024-06",
+      "image": { "src": "/reading/neurips.png", "alt": "NeurIPS conference logo" },
       "note": "A paper I return to when tracing the design choices behind attention-based models.",
       "url": "https://arxiv.org/abs/1706.03762"
     },
@@ -106,9 +115,69 @@ export const englishContent: SiteContent = {
       "creator": "Richard Sutton",
       "kind": "Article",
       "status": "Finished",
-      "year": "2019",
+      "finishedAt": "2026-05",
       "note": "A useful prompt for thinking about what to build by hand and what to let a system learn.",
       "url": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html"
+    },
+    {
+      "title": "Sample: Small experiments, useful questions",
+      "creator": "Sample entry",
+      "kind": "Article",
+      "status": "Finished",
+      "finishedAt": "2026-09",
+      "isSample": true,
+      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
+      "url": "#sample-small-experiments"
+    },
+    {
+      "title": "Sample: What a benchmark leaves out",
+      "creator": "Sample entry",
+      "kind": "Article",
+      "status": "Finished",
+      "finishedAt": "2025-11",
+      "isSample": true,
+      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
+      "url": "#sample-benchmark"
+    },
+    {
+      "title": "Sample: Keeping a research notebook",
+      "creator": "Sample entry",
+      "kind": "Article",
+      "status": "Finished",
+      "finishedAt": "2025-03",
+      "isSample": true,
+      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
+      "url": "#sample-research-notebook"
+    },
+    {
+      "title": "Sample: A slower way to learn",
+      "creator": "Sample entry",
+      "kind": "Article",
+      "status": "Finished",
+      "finishedAt": "2024-01",
+      "isSample": true,
+      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
+      "url": "#sample-slower-learning"
+    },
+    {
+      "title": "Sample: Notes on useful tools",
+      "creator": "Sample entry",
+      "kind": "Article",
+      "status": "Finished",
+      "finishedAt": "2023-10",
+      "isSample": true,
+      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
+      "url": "#sample-useful-tools"
+    },
+    {
+      "title": "Sample: The questions worth keeping",
+      "creator": "Sample entry",
+      "kind": "Article",
+      "status": "Finished",
+      "finishedAt": "2023-02",
+      "isSample": true,
+      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
+      "url": "#sample-questions"
     }
   ]
 }

@@ -78,7 +78,7 @@ watch(visiblePosts, async () => {
   updateScrollControls()
 })
 
-useHead({ title: () => `${t('Blogs')} — ${profile.value.name}` })
+useHead({ title: () => `${t('Blogs')} — ${profile.value.displayName}` })
 </script>
 
 <template>

@@ -47,6 +47,7 @@ button {
   font-size:42px;
   letter-spacing:-.12em;
   line-height:1;
+  flex-shrink:0;
   width:max-content
 }
 .wordmark-dot {
@@ -91,13 +92,11 @@ button {
 }
 .rail-email {
   font-size:12px;
-  font-weight:600;
-  border-bottom:1px solid var(--color-text);
-  padding-bottom:7px;
-  width:max-content
+  width:max-content;
+  white-space:nowrap
 }
 .rail-email span {
-  margin-left:18px
+  margin-left:0
 }
 .page-area {
   min-width:0;
@@ -143,6 +142,9 @@ button {
   margin:0 0 28px;
   font-weight:600
 }
+.profile-greeting {
+  text-transform:none
+}
 .hero-copy h1,.page-intro h1,.article-header h1 {
   font-family:Georgia,'Times New Roman',serif;
   font-weight:400;
@@ -157,6 +159,100 @@ button {
 .hero-copy h1 em,.page-intro h1 em,.about-details h2 em {
   font-weight:400;
   color:var(--color-accent)
+}
+.hero-copy {
+  min-width:0;
+  container-type:inline-size
+}
+.hero-copy .personal-tags {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:17px;
+  font-size:clamp(38px,15cqi,82px);
+  letter-spacing:-.055em;
+  line-height:1.08;
+  white-space:normal;
+  padding:6px 0 10px
+}
+.personal-tag {
+  --tag-tilt:-1.5deg;
+  --tag-indent:0px;
+  display:block;
+  margin-left:var(--tag-indent);
+  max-width:calc(100% - var(--tag-indent));
+  animation:personal-tag-arrive .65s cubic-bezier(.22,1,.36,1) var(--tag-delay) backwards
+}
+.personal-tag-card {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:15px 20px 17px;
+  border:1px solid var(--color-border);
+  border-radius:4px;
+  background:var(--color-background);
+  transform:rotate(var(--tag-tilt));
+  transform-origin:20% 50%;
+  transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,background-color .3s,box-shadow .3s
+}
+.personal-tag-index {
+  flex-shrink:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:10px;
+  font-weight:400;
+  font-style:normal;
+  letter-spacing:.12em;
+  line-height:1;
+  color:var(--color-muted)
+}
+.personal-tag-label {
+  min-width:0
+}
+.personal-tag--research .personal-tag-card {
+  background:var(--color-surface)
+}
+.personal-tag--music {
+  --tag-indent:24px;
+  --tag-tilt:1.5deg;
+  font-size:clamp(19px,7.2cqi,34px);
+  font-style:italic;
+  letter-spacing:-.035em;
+  color:var(--color-accent)
+}
+.personal-tag--photography {
+  --tag-indent:8px;
+  --tag-tilt:-.8deg;
+  font-size:clamp(19px,7.2cqi,34px);
+  letter-spacing:-.035em
+}
+@media (hover:hover) {
+  .personal-tag:hover .personal-tag-card {
+    transform:translateY(-4px) rotate(0deg);
+    border-color:var(--color-accent);
+    background:var(--color-surface);
+    box-shadow:0 6px 0 -2px var(--color-shadow)
+  }
+}
+@keyframes personal-tag-arrive {
+  from {
+    opacity:0;
+    transform:translateY(14px) rotate(-2deg)
+  }
+  to {
+    opacity:1;
+    transform:translateY(0) rotate(0deg)
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .personal-tag {
+    animation:none
+  }
+  .personal-tag-card {
+    transition:none
+  }
+  .personal-tag:hover .personal-tag-card {
+    transform:rotate(var(--tag-tilt))
+  }
 }
 .hero-lede {
   font-family:Georgia,serif;
@@ -185,10 +281,11 @@ button {
   font-size:12px;
   font-weight:600;
   padding:15px 6px;
-  border-bottom:1px solid var(--color-text);
+  border-bottom:1px solid currentColor;
+  color:var(--color-text);
   display:inline-flex;
   gap:22px;
-  transition:color .25s
+  transition:color .25s,border-color .25s
 }
 .text-link:hover {
   color:var(--color-accent)
@@ -201,8 +298,11 @@ button {
 .portrait-frame img {
   display:block;
   width:100%;
+  height:auto;
+  aspect-ratio:4/5;
   max-height:660px;
   object-fit:cover;
+  object-position:59% center;
   box-shadow:18px 22px 0 var(--color-surface)
 }
 .portrait-frame figcaption {
@@ -501,9 +601,14 @@ button {
 .back-link {
   display:inline-block;
   font-size:12px;
-  border-bottom:1px solid var(--color-text);
+  color:var(--color-text);
+  border-bottom:1px solid currentColor;
   padding:0 0 8px;
-  margin-bottom:90px
+  margin-bottom:90px;
+  transition:color .25s,border-color .25s
+}
+.back-link:hover {
+  color:var(--color-accent)
 }
 .article-page {
   max-width:1040px
