@@ -1,0 +1,74 @@
+/* Shared button recipes. See docs/button-styles.md before adding a variant. */
+:root {
+  --button-radius:999px;
+  --button-font-size:12px;
+  --button-line-height:1.2;
+  --button-gap:6px;
+  --button-padding-y:15px;
+  --button-padding-x:20px;
+  --button-height:calc(var(--button-font-size) * var(--button-line-height) + 2 * var(--button-padding-y));
+  --button-color-transition:background-color .25s, color .25s, border-color .25s;
+  --button-primary-background:var(--color-text);
+  --button-primary-foreground:var(--color-background);
+  --button-primary-hover-background:var(--color-accent);
+  --button-surface-background:var(--color-background);
+  --button-surface-foreground:var(--color-text);
+  --button-surface-border:var(--color-border);
+  --button-surface-hover-background:var(--color-surface);
+  --button-surface-hover-border:var(--color-accent);
+}
+.button-primary {
+  --button-background:var(--button-primary-background);
+  --button-foreground:var(--button-primary-foreground);
+  --button-border:var(--button-primary-background);
+  border-radius:var(--button-radius);
+  font-size:var(--button-font-size);
+  font-weight:400;
+  line-height:var(--button-line-height)
+}
+.button-primary:hover {
+  --button-background:var(--button-primary-hover-background);
+  --button-border:var(--button-primary-hover-background)
+}
+.button-surface {
+  --button-background:var(--button-surface-background);
+  --button-foreground:var(--button-surface-foreground);
+  --button-border:var(--button-surface-border)
+}
+.button-surface:hover {
+  --button-background:var(--button-surface-hover-background);
+  --button-border:var(--button-surface-hover-border)
+}
+.button-primary,.button-surface {
+  background-color:var(--button-background);
+  color:var(--button-foreground);
+  border-color:var(--button-border);
+  transition:var(--button-color-transition)
+}
+:where(.button-primary,.button-surface):focus-visible {
+  outline:2px solid var(--color-accent);
+  outline-offset:5px
+}
+.pill-link {
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  gap:var(--button-gap);
+  border:0;
+  padding:var(--button-padding-y) var(--button-padding-x);
+  white-space:nowrap
+}
+.button-circle {
+  display:grid;
+  place-items:center;
+  aspect-ratio:1;
+  border:1px solid var(--button-border);
+  border-radius:50%
+}
+@media(max-width:1050px) {
+  :root {
+    --button-padding-y:9px;
+    --button-padding-x:14px
+  }
+}

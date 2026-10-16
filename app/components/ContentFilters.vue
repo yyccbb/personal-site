@@ -15,7 +15,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
       :key="option.value"
       type="button"
       class="filter-button"
-      :class="{ active: modelValue === option.value }"
+      :class="{ active: modelValue === option.value, 'button-primary': modelValue === option.value, 'button-surface': modelValue !== option.value }"
       :aria-pressed="modelValue === option.value"
       @click="emit('update:modelValue', option.value)"
     >

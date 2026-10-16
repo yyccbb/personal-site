@@ -1,11 +1,8 @@
 /** CMS-ready content shapes. Replace the local sources with an adapter later. */
-export interface BlogSection { heading: string; paragraphs: string[] }
-export type BlogCategory = 'research' | 'travelling'
-export interface BlogPost { slug: string; title: string; date: string; category: BlogCategory; image?: { src: string; alt: string }; readingTime: string; excerpt: string; sections: BlogSection[] }
 export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; finishedAt?: string; isSample?: boolean; image?: { src: string; alt: string }; note: string; url: string }
 export interface ProfileTag { id: string; label: string }
-export interface Profile { name: string; displayName: string; tags: ProfileTag[]; image: { src: string; alt: string }; role: string; location: string; email: string; introduction: string; biography: string; aside: string }
-export interface SiteContent { profile: Profile; posts: BlogPost[]; reading: ReadingItem[] }
+export interface Profile { name: string; displayName: string; tags: ProfileTag[]; image: { src: string; alt: string }; role: string; location: string; email: string; introduction: string; biography: string; workingStyle: string; aside: string; personalInterests: string; connectionInvitation: string }
+export interface SiteContent { profile: Profile; reading: ReadingItem[] }
 
 export const englishContent: SiteContent = {
   "profile": {
@@ -16,71 +13,17 @@ export const englishContent: SiteContent = {
       { "id": "photography", "label": "Photographer" },
       { "id": "music", "label": "Violinist at heart" }
     ],
-    "image": { "src": "/profile.jpg", "alt": "Portrait of YU Chenbo" },
+    "image": { "src": "/profile.jpg", "alt": "Portrait of Yu Chenbo" },
     "role": "AI researcher & technologist",
     "location": "Research, wherever it happens",
-    "email": "hello@example.com",
-    "introduction": "I study intelligent systems and build tools that make research easier to understand, reproduce, and use.",
-    "biography": "I’m an AI researcher interested in model evaluation, learning systems, and the engineering behind useful experiments. I like moving between a research question, a careful implementation, and the evidence that connects them.",
-    "aside": "Outside research, I enjoy open-source tools, new hardware, long-form technical writing, and finding small ways to make everyday technology work better."
+    "email": "yuchenbo0130@gmail.com",
+    "introduction": "I explore language models, AI alignment, and agentic AI, and enjoy building practical solutions with AI tools in my spare time.",
+    "biography": "I’m an AI researcher based in Singapore. My research interests are language models, AI alignment, and agentic AI. I’m thrilled to explore the mathematical foundations and inner workings of language models to better align them or design harnesses for problems I care about.",
+    "workingStyle": "I enjoy energetic teams where competing ideas spark passionate discussions, and where everyone’s need for quiet, focused thinking is respected.",
+    "aside": "Outside research, I follow new developments in technology closely and enjoy trying new tools firsthand. I also explore other disciplines, looking for ideas and opportunities that connect with my work.",
+    "personalInterests": "I’m a self-taught violinist and a fan of classical music. I also love travelling and documenting my life through photography. To me, photographs are honest vessels for memories. I play with light and shadow to make images I hope will still catch the eye and bring a moment back to life years from now.",
+    "connectionInvitation": "I’d love to meet people who share these curiosities and bring their own perspectives. If something here resonates with you, say hello. I’d be glad to hear what you’re exploring and see what we might learn from each other."
   },
-  "posts": [
-    {
-      "slug": "what-a-good-evaluation-misses",
-      "title": "What a good evaluation can still miss",
-      "date": "September 18, 2026",
-      "category": "research",
-      "readingTime": "5 min read",
-      "excerpt": "A few reflections on new AI capabilities, useful benchmarks, and what a single score leaves out.",
-      "sections": [
-        {
-          "heading": "Start with the question",
-          "paragraphs": [
-            "Before I run an evaluation, I write down the decision it is supposed to help me make. A score is easier to interpret when I know what kind of progress would matter for the task in front of me.",
-            "For a small prototype, that often means collecting a handful of realistic cases and describing what a useful answer would look like. I treat these descriptions as a working hypothesis, and keep revisiting them as the system changes."
-          ]
-        },
-        {
-          "heading": "Keep the failures close",
-          "paragraphs": [
-            "My favorite part of an experiment report is the small table of failures. I want to see where the system was uncertain, what information it missed, and whether the problem belonged to the model, the setup, or the question.",
-            "I keep the aggregate result alongside these examples. The number gives me a way to compare runs; the examples give me something concrete to investigate next. This is a practice I am still refining, one experiment at a time."
-          ]
-        }
-      ]
-    },
-    {
-      "slug": "a-slower-way-to-see-a-city",
-      "title": "A slower way to see a city",
-      "date": "August 29, 2026",
-      "category": "travelling",
-      "readingTime": "4 min read",
-      "excerpt": "Side streets, a quiet café, and the things I noticed when I stopped trying to fit everything into a trip.",
-      "sections": [
-        {
-          "heading": "Leave space in the day",
-          "paragraphs": [
-            "On a recent trip to Kyoto, I arrived with a map full of saved places. By the second morning, I had already started measuring the day by how many pins I could turn into visits. It felt strangely like clearing a task list.",
-            "I left the afternoon open instead. I walked along a quiet street, stopped for coffee, and sat long enough to notice the small routines around me: someone opening a shop, bicycles passing the window, a delivery arriving next door. None of it needed to become an attraction."
-          ]
-        },
-        {
-          "heading": "A different kind of attention",
-          "paragraphs": [
-            "I still used my phone to find my way, but I stopped consulting it at every corner. Having less of a plan made me pay more attention to where I actually was. I remember the light on a wall and a conversation over lunch more clearly than the places I had hurried through the day before.",
-            "Back at my desk, that difference stayed with me. Research also has moments when the next result becomes the only thing in view. Sometimes a little unstructured time helps me notice the question I had been walking past."
-          ]
-        },
-        {
-          "heading": "What I brought home",
-          "paragraphs": [
-            "My notes from the trip are short: a few photos, the name of the café, and one sentence about each day. They are enough to bring back how the place felt without turning the trip into another project to document.",
-            "For the next trip, I will still save a few places I want to see. I will also leave a blank afternoon on the calendar. It turned out to be the part I remember most."
-          ]
-        }
-      ]
-    }
-  ],
   "reading": [
     {
       "title": "Deep Learning",
@@ -182,5 +125,4 @@ export const englishContent: SiteContent = {
   ]
 }
 
-export const { profile, posts, reading } = englishContent
-export const getPost = (slug: string) => posts.find(post => post.slug === slug)
+export const { profile, reading } = englishContent

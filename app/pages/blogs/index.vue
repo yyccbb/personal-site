@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { NuxtLink } from '#components'
 
-const { posts, profile } = useSiteContent()
+const { profile } = useSiteContent()
 const { t } = useSitePreferences()
+const { posts, ready, error } = useJournal()
+await ready
+if (error.value) throw error.value
 const previews = [
   { slug: 'preview-tools', title: 'Small tools, useful discoveries', category: 'research' },
   { slug: 'preview-weekend', title: 'A weekend without a checklist', category: 'travelling' },
@@ -14,7 +17,7 @@ const cards = computed(() => [
     ...post,
     title: t(post.title),
     date: t('Coming soon'),
-    excerpt: '',
+    subtitle: '',
     readingTime: t('Preview card'),
     image: undefined,
     isPreview: true,
@@ -78,33 +81,32 @@ watch(visiblePosts, async () => {
   updateScrollControls()
 })
 
-useHead({ title: () => `${t('Blogs')} — ${profile.value.displayName}` })
+useHead({ title: () => `${t('Journal')} — ${profile.value.displayName}` })
 </script>
 
 <template>
   <div class="editorial-page listing-page">
     <div class="eyebrow"><span class="eyebrow-line" />{{ t('Journal / 002') }}</div>
     <header class="page-intro">
-      <p class="small-intro">{{ t('Occasional notes') }}</p>
       <h1>{{ t('Notes from') }}<br><em>{{ t('everywhere.') }}</em></h1>
       <p>{{ t('Reflections on new technology, notes from research, and stories from places I’ve been.') }}</p>
     </header>
     <div class="collection-toolbar">
       <div class="collection-filter-group">
         <p class="section-index">{{ t('Browse by category') }}</p>
-        <ContentFilters v-model="category" :options="options" :label="t('Filter blog posts')" />
+        <ContentFilters v-model="category" :options="options" :label="t('Filter journal entries')" />
       </div>
       <div class="scroll-controls">
         <span class="scroll-caption">{{ t('Scroll to explore') }}</span>
-        <button type="button" :disabled="!canScrollLeft" :aria-label="t('Scroll blog posts left')" @click="scrollPosts(-1)">←</button>
-        <button type="button" :disabled="!canScrollRight" :aria-label="t('Scroll blog posts right')" @click="scrollPosts(1)">→</button>
+        <button type="button" class="button-surface" :disabled="!canScrollLeft" :aria-label="t('Scroll journal entries left')" @click="scrollPosts(-1)">←</button>
+        <button type="button" class="button-surface" :disabled="!canScrollRight" :aria-label="t('Scroll journal entries right')" @click="scrollPosts(1)">→</button>
       </div>
     </div>
     <section
       ref="post-list"
       class="post-list"
       tabindex="0"
-      :aria-label="t('Blog posts')"
+      :aria-label="t('Journal entries')"
       aria-keyshortcuts="ArrowLeft ArrowRight"
       aria-live="polite"
       @scroll.passive="updateScrollControls"
@@ -122,11 +124,10 @@ useHead({ title: () => `${t('Blogs')} — ${profile.value.displayName}` })
         <div class="post-card-copy">
           <div class="post-card-top"><span>{{ t(post.category) }}</span><span>{{ post.date }}</span></div>
           <h2>{{ post.title }}</h2>
-          <p v-if="post.excerpt">{{ post.excerpt }}</p>
+          <p v-if="post.subtitle">{{ post.subtitle }}</p>
           <div class="post-card-bottom"><span>{{ post.readingTime }}</span><span v-if="!post.isPreview" class="round-arrow" aria-hidden="true">↗</span></div>
         </div>
       </component>
     </section>
-    <p class="end-note">{{ t('More notes are on their way. Thanks for reading.') }}</p>
   </div>
 </template>

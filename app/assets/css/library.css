@@ -21,7 +21,7 @@
 .library-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 24px;
+  gap: var(--space-content);
 }
 .reading-timeline {
   align-self: stretch;
@@ -140,9 +140,8 @@
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr);
   align-items: start;
-  gap: 26px;
-  padding: 24px;
-  min-height: 224px;
+  gap: var(--space-content);
+  padding: var(--space-content);
   border: 1px solid var(--color-border);
   transition: background .3s, transform .3s, box-shadow .3s;
 }
@@ -197,7 +196,7 @@
   min-width: 0;
 }
 .library-copy h2 {
-  margin: 0 0 12px;
+  margin: 0 0 var(--space-caption);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(26px, 2.2vw, 34px);
   line-height: 1.18;
@@ -206,13 +205,13 @@
   overflow-wrap: break-word;
 }
 .library-copy .library-creator {
-  margin: 0 0 18px;
+  margin: 0 0 var(--space-copy);
   color: var(--color-muted);
   font-size: 11px;
   line-height: 1.65;
 }
 .library-copy .library-note {
-  margin: 0 0 24px;
+  margin: 0 0 var(--space-copy);
   color: var(--color-body);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 17px;
@@ -220,8 +219,12 @@
 }
 .library-source {
   display: inline-flex;
-  align-items: baseline;
-  gap: 15px;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  gap: 6px;
+  line-height: 1.2;
+  white-space: nowrap;
   padding-bottom: 5px;
   border-bottom: 1px solid currentColor;
   color: var(--color-text);
@@ -241,9 +244,6 @@
     --timeline-gap: 24px;
     grid-template-columns: 140px minmax(0, 1fr);
   }
-  .library-entry {
-    gap: 24px;
-  }
   .library-copy .library-note {
     max-width: 620px;
   }
@@ -261,8 +261,8 @@
   }
   .library-entry {
     grid-template-columns: 86px minmax(0, 1fr);
-    gap: 16px;
-    padding: 16px;
+    gap: var(--space-copy);
+    padding: var(--space-copy);
   }
   .library-marker {
     width: 86px;
@@ -280,7 +280,7 @@
   .library-entry {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--space-copy);
   }
   .library-copy h2 {
     font-size: 25px;

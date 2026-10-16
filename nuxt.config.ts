@@ -2,6 +2,10 @@ import tailwindcss from '@tailwindcss/vite'
 import { englishContent } from './app/content/site'
 
 export default defineNuxtConfig({
+  modules: ['@nuxt/content'],
+  content: {
+    renderer: { anchorLinks: false },
+  },
   css: ['~/assets/css/main.css', '~/assets/css/library.css', '~/assets/css/preferences.css'],
   vite: {
     plugins: [tailwindcss()],

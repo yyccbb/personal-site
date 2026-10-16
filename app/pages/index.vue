@@ -1,6 +1,9 @@
 <script setup lang="ts">
-const { posts, profile } = useSiteContent()
-const { t } = useSitePreferences()
+const { profile } = useSiteContent()
+const { t, locale } = useSitePreferences()
+const { posts, ready, error } = useJournal()
+await ready
+if (error.value) throw error.value
 
 useHead({ title: () => `${t('About')} — ${profile.value.displayName}` })
 </script>
@@ -20,9 +23,9 @@ useHead({ title: () => `${t('About')} — ${profile.value.displayName}` })
           </span>
         </h1>
         <p class="hero-lede">{{ profile.introduction }}</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <NuxtLink class="pill-link" to="/blogs">{{ t("Explore my writing") }} <span>↗</span></NuxtLink>
-          <a class="text-link" :href="`mailto:${profile.email}`">{{ t("Say hello") }} <span>↗</span></a>
+        <div class="hero-actions flex flex-wrap items-center gap-3">
+          <NuxtLink class="pill-link button-primary" to="/blogs">{{ t("Browse my journal") }} <span aria-hidden="true">↗</span></NuxtLink>
+          <ContactLinks :email="profile.email" variant="static" />
         </div>
       </div>
       <figure class="portrait-frame">
@@ -33,15 +36,18 @@ useHead({ title: () => `${t('About')} — ${profile.value.displayName}` })
     <section class="about-details section-divider">
       <p class="section-index">{{ t("A little about me") }} <span>↘</span></p>
       <div>
-        <h2>{{ t("Curious by design.") }}<br><em>{{ t("Considered") }}</em> {{ t("by default.") }}</h2>
-        <p>{{ profile.biography }}</p>
+        <h2>
+          <em>{{ t("Research") }}</em>{{ locale === 'zh' ? '，' : ',' }}<br>
+          {{ t("and the") }}{{ locale === 'zh' ? '' : ' ' }}<em>{{ t("life") }}</em>{{ locale === 'zh' ? '' : ' ' }}{{ t("around it.") }}
+        </h2>
+        <p>{{ [profile.biography, profile.workingStyle].join(locale === 'zh' ? '' : ' ') }}</p>
         <p>{{ profile.aside }}</p>
-        <div class="detail-row"><span>{{ t("Currently") }}</span><strong>{{ t("Available for select collaborations") }}</strong></div>
-        <div class="detail-row"><span>{{ t("Based in") }}</span><strong>{{ profile.location }}</strong></div>
+        <p>{{ profile.personalInterests }}</p>
+        <p>{{ profile.connectionInvitation }}</p>
       </div>
     </section>
     <section class="latest-section section-divider">
-      <div class="section-heading"><p class="section-index">{{ t("From the journal") }}</p><NuxtLink class="text-link" to="/blogs">{{ t("All writing ↗") }}</NuxtLink></div>
+      <div class="section-heading"><p class="section-index">{{ t("From the journal") }}</p><NuxtLink class="pill-link button-primary" to="/blogs">{{ t("All entries") }} <span aria-hidden="true">↗</span></NuxtLink></div>
       <NuxtLink v-for="post in posts" :key="post.slug" :to="`/blogs/${post.slug}`" class="latest-row">
         <span>{{ post.date }}</span><strong>{{ post.title }}</strong><span class="latest-arrow">↗</span>
       </NuxtLink>
