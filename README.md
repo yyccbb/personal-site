@@ -30,6 +30,10 @@ English and Chinese profile and Reading content live in `app/content/site.ts` an
 
 `npm run typecheck` checks TypeScript, and `npm run build` verifies a production build. Nuxt Content maintains an internal SQLite index and provides its article query endpoints; no external database, analytics, or CMS account is required. Nuxt's standard build output can be deployed to Vercel later.
 
+## Photography
+
+The Photography designs on `codex/photography-print-stacks`, `codex/photography-gallery-wall`, and `codex/photography-filmstrip` share automatic ImageKit album discovery at `/photography`. Configure the read-only server key using `.env.example`, and tag one cover photograph per `/Gallery` folder with `album-cover`. See [Photography setup and design branches](docs/photography.md) for ordering, refresh behavior, navigation, and branch comparison instructions.
+
 ## Writing journal articles
 
 Create files in `content/journal/en/` or `content/journal/zh/`, using `YYYY-MM-DD-slug.md`. For example, `2026-09-18-what-a-good-evaluation-misses.md` is served at `/blogs/what-a-good-evaluation-misses`. Both translations must use the same filename and publication date. Each slug must be unique within a language. Articles appear newest first, with the slug breaking date ties.

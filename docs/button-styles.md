@@ -71,6 +71,7 @@ Keep these exceptions until the user chooses to change them:
 | --- | --- | --- |
 | Desktop appearance/language slider tracks | Use the surface hover tint as their resting background so the page-colored knob remains visible. Border, icon, hover, and focus colors follow the surface palette. | `.preference-control` in `preferences.css`; mobile circles use the ordinary surface recipe. |
 | Open source links, Reading timeline labels, sidebar navigation, Journal card arrows, article previous/next links, and footer contact link | Navigation with transparent backgrounds; some links have underlines, outlined arrows, or accent hover text. These are not filled call-to-action buttons. | Existing navigation/link styles in `library.css` and `main.css`. |
+| Photography album covers and photographs | Image navigation surfaces use their photographic composition and a transparent button reset, with the shared accent focus outline. Their decorative arrows are not separate controls. Back buttons use `button-primary pill-link`; viewer and filmstrip arrows use `button-surface button-circle`. | Shared `.photo-trigger` in `photography.vue`, with layout-specific framing in the two Photography components. |
 
 ## Verification
 

@@ -26,4 +26,6 @@ Use `git switch <branch>` to compare, then `npm run dev` and visit `/photography
 
 Click or press Enter on a cover to open an album. Browser Back, Escape, or Back to albums returns to the overview and restores its position. Click a photograph for a full-screen viewer; Left/Right moves between images and Escape closes it. The modal traps focus using the native dialog element. Reduced-motion preferences disable animated movement. Mobile uses the compact Photos / 摄影 navigation label and keeps the header on one row.
 
+The filmstrip supports native touch/trackpad scrolling, mouse dragging, horizontal arrow controls, and Left/Right, Home, and End while the strip is focused. Mouse-wheel movement moves sideways while there is more to explore and resumes ordinary page scrolling at the ends. Dragging does not accidentally open a photograph.
+
 Run `npm run typecheck` and `npm run build` for validation. No tests have been added.
