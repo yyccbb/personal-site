@@ -18,6 +18,10 @@ The current adapter is for the `yyccbb` ImageKit Media Library and `/Gallery`. E
 
 The `codex/photography-print-stacks` design uses overlapping photographic prints that open into a loosely arranged album. The title and subtitle reuse the Journal/Reading typography and spacing.
 
+Album covers stay in one horizontal row as the collection grows. Swipe, scroll with a trackpad or mouse wheel over the row, use the arrow buttons, or focus the row and use Left/Right, Home, and End. Arrow controls appear only when albums overflow; their shape and palette reuse the Journal controls. At either end, vertical mouse-wheel scrolling resumes moving the page. Frame rotation, highlights, and shadows have room inside the scroll area.
+
+Album covers, their layered frames, and individual photographs share the Journal cards' surface tint and solid offset shadow on hover and keyboard focus. All colors follow the active theme, and reduced-motion preferences disable transitions.
+
 Edit `photographyCitiesZh` in `app/content/photography.ts` to add Chinese city names. Keys are lowercase English names with spaces, for example `'new york': '纽约'`. Unknown cities keep their English names until a translation is added. Dates are localized automatically, for example **南京 · 2026年10月**.
 
 Set `photographySiteUrl` in the same file to the full HTTPS address of the future dedicated photography site. While empty, the **Photography site** control is a focusable, inactive button marked as coming soon for assistive technology. Once configured, it renders as a normal link using the shared primary-button recipe.

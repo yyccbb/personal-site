@@ -10,6 +10,7 @@ export const chineseCopy: Record<string, string> = {
   "Open album: {city}, {date}": "打开相册：{city}，{date}",
   "A closer look": "走近一些",
   "Albums": "相册",
+  "Browse albums": "浏览相册",
   "Photographs": "张照片",
   "photographs": "张照片",
   "Open album {number}": "打开第 {number} 本相册",
