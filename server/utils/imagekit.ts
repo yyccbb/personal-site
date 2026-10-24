@@ -51,7 +51,8 @@ function toPhotograph(asset: Asset): Photograph | undefined {
 }
 
 // Only the sanitized response is cached. No credentials, folder names, EXIF,
-// or other library metadata are returned to the browser.
+// or other library metadata are returned to the browser. City and month are
+// parsed from the folder name for the album's public label.
 export const getPhotoCollection = defineCachedFunction(async (): Promise<PhotoCollection> => {
   const key = useRuntimeConfig().imagekitPrivateKey
   const folders = (await listAssets(key, root, 'folder'))
@@ -62,6 +63,8 @@ export const getPhotoCollection = defineCachedFunction(async (): Promise<PhotoCo
   // truncating collections larger than ImageKit's response limit.
   for (let offset = 0; offset < folders.length; offset += 4) {
     const batch = await Promise.all(folders.slice(offset, offset + 4).map(async (folder) => {
+      const label = /^(\d{4})(\d{2})\d{2}_(.+)$/.exec(folder.name || '')
+      if (!label) return
       const assets = (await listAssets(key, folder.folderPath!, 'file'))
         .filter(asset => asset.filePath?.slice(0, asset.filePath.lastIndexOf('/')) === folder.folderPath)
         .sort((a, b) => (a.name || '').localeCompare(b.name || '', 'en', { numeric: true }))
@@ -71,6 +74,8 @@ export const getPhotoCollection = defineCachedFunction(async (): Promise<PhotoCo
       const cover = entries.find(entry => entry.asset.tags?.includes('album-cover'))?.photo || photos[0]!
       return {
         id: createHash('sha256').update(folder.folderId || folder.folderPath!).digest('hex').slice(0, 16),
+        city: label[3]!.replaceAll('_', ' '),
+        month: `${label[1]}-${label[2]}`,
         cover,
         photos,
       }
@@ -78,4 +83,4 @@ export const getPhotoCollection = defineCachedFunction(async (): Promise<PhotoCo
     albums.push(...batch.filter((album): album is PhotoAlbum => album !== undefined))
   }
   return { albums }
-}, { name: 'photography', getKey: () => 'yyccbb-gallery-v1', maxAge: 300, swr: true, staleMaxAge: 86400 })
+}, { name: 'photography', getKey: () => 'yyccbb-gallery-v2', maxAge: 300, swr: true, staleMaxAge: 86400 })

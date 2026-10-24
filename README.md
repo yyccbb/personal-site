@@ -32,7 +32,7 @@ English and Chinese profile and Reading content live in `app/content/site.ts` an
 
 ## Photography
 
-The Photography designs on `codex/photography-print-stacks`, `codex/photography-gallery-wall`, and `codex/photography-filmstrip` share automatic ImageKit album discovery at `/photography`. Configure the read-only server key using `.env.example`, and tag one cover photograph per `/Gallery` folder with `album-cover`. See [Photography setup and design branches](docs/photography.md) for ordering, refresh behavior, navigation, and branch comparison instructions.
+Photography uses overlapping print stacks at `/photography`, with automatic ImageKit album discovery. Configure the read-only server key using `.env.example`, and tag one cover photograph per `/Gallery` folder with `album-cover`. Album cards show the city and month parsed from folder names such as `20261005_Nanjing`. Chinese city translations and the future photography-site link live in `app/content/photography.ts`. See [Photography setup](docs/photography.md) for details.
 
 ## Writing journal articles
 

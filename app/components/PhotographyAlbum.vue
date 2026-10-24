@@ -14,7 +14,6 @@ const tilts = [-2, 2, 0, -1, 3, -2]
         <PhotoImage :photo="photo" :eager="index < 2" sizes="(max-width: 600px) 85vw, 42vw" /><span class="loose-print-caption"><span>{{ String(index + 1).padStart(2, '0') }}</span><span aria-hidden="true">↗</span></span>
       </button>
     </div>
-    <div class="gallery-footnote"><span>{{ t('A collection of moments, kept in photographs.') }}</span><span aria-hidden="true">↥</span></div>
   </section>
 </template>
 

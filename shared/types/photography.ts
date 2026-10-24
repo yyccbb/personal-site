@@ -8,6 +8,8 @@ export interface Photograph {
 
 export interface PhotoAlbum {
   id: string
+  city: string
+  month: string
   cover: Photograph
   photos: Photograph[]
 }

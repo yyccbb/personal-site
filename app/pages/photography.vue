@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PhotoCollection, PhotoAlbum } from '../../shared/types/photography'
+import { photographySiteUrl } from '~/content/photography'
 const { profile } = useSiteContent()
 const { t } = useSitePreferences()
 const route = useRoute()
@@ -38,7 +39,20 @@ useHead({ title: () => `${t('Photography')} — ${profile.value.displayName}` })
 <template>
   <div class="editorial-page photography-page" :class="{ 'album-is-open': selected }">
     <div class="eyebrow"><span class="eyebrow-line" />{{ t('Photography / 004') }}</div>
-    <header v-if="!selected" class="photography-intro"><div><p class="photography-kicker">{{ t('Collected light') }}</p><h1>{{ t('Ways of') }} <em>{{ t('seeing.') }}</em></h1></div><p class="photography-lede">{{ t('Between open landscapes and quiet portraits.') }}<span>{{ t('Choose a photograph. Step into a memory.') }}</span></p></header>
+    <header v-if="!selected" class="page-intro">
+      <div class="photography-title-row">
+        <h1>{{ t('Ways of') }}<br><em>{{ t('seeing.') }}</em></h1>
+        <component
+          :is="photographySiteUrl ? 'a' : 'button'"
+          :href="photographySiteUrl || undefined"
+          :type="photographySiteUrl ? undefined : 'button'"
+          :aria-disabled="photographySiteUrl ? undefined : true"
+          :aria-label="t(photographySiteUrl ? 'Photography site' : 'Photography site — coming soon')"
+          class="pill-link button-primary photography-site-link"
+        >{{ t('Photography site') }} <span aria-hidden="true">↗</span></component>
+      </div>
+      <p>{{ t('Between open landscapes and quiet portraits.') }}</p>
+    </header>
     <header v-else class="album-toolbar"><button ref="back-button" class="pill-link button-primary" @click="closeAlbum"><span aria-hidden="true">←</span> {{ t('Back to albums') }}</button><p>{{ String(selected.photos.length).padStart(2, '0') }} {{ t('photographs') }}</p></header>
     <div v-if="status === 'pending'" class="photography-empty" role="status">{{ t('Loading photographs…') }}</div>
     <div v-else-if="error" class="photography-empty" role="status"><p>{{ t('The photographs could not be loaded.') }}</p><button class="pill-link button-primary" @click="refresh()">{{ t('Try again') }}</button></div>
@@ -53,12 +67,8 @@ useHead({ title: () => `${t('Photography')} — ${profile.value.displayName}` })
 
 <style>
 .photography-page{padding-bottom:40px;max-width:1800px}
-.photography-intro{padding:40px 0 50px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
-.photography-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--color-accent);margin:0 0 16px}
-.photography-intro h1{font-family:Georgia,serif;font-size:clamp(44px,5.4vw,80px);font-weight:400;line-height:1.04;letter-spacing:-.055em;margin:0}
-.photography-intro h1 em{font-weight:400;color:var(--color-accent)}
-.photography-lede{max-width:235px;color:var(--color-body);font-size:13px;line-height:1.7;margin:0 0 4px}
-.photography-lede span{display:block;font-size:11px;color:var(--color-muted);margin-top:8px}
+.photography-title-row{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.photography-title-row h1,.photography-site-link{flex-shrink:0}
 .album-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 0 36px}
 .album-toolbar p{font-size:11px;color:var(--color-muted);letter-spacing:.06em;margin:0}
 .photography-page button{cursor:pointer}
@@ -68,8 +78,6 @@ useHead({ title: () => `${t('Photography')} — ${profile.value.displayName}` })
 .photography-empty h2{font:400 30px Georgia,serif;color:var(--color-text);margin:16px 0 0}
 .photography-empty p{font-size:13px;margin:0 0 8px}
 .empty-frame{width:120px;height:85px;border:1px solid var(--color-border);display:grid;place-items:center;font:32px Georgia,serif;transform:rotate(-7deg)}
-.gallery-footnote{display:flex;justify-content:space-between;gap:16px;padding-top:22px;margin-top:24px;border-top:1px solid var(--color-border);font-size:10px;letter-spacing:.1em;color:var(--color-muted)}
-@media(max-width:1050px){.photography-intro{align-items:flex-start;flex-direction:column;gap:20px}.photography-lede{max-width:none}.photography-lede span{display:none}}
-@media(max-width:760px){.photography-page{padding-inline:24px}.photography-intro{padding:32px 0 36px;gap:16px}.photography-intro h1{font-size:clamp(44px,10vw,68px)}.photography-kicker{margin-bottom:12px}.album-toolbar{padding:24px 0 30px}.gallery-footnote{letter-spacing:.03em}}
+@media(max-width:760px){.photography-page{padding-inline:24px}.photography-title-row{gap:20px}.album-toolbar{padding:24px 0 30px}}
 @media(prefers-reduced-motion:no-preference){.album-is-open .album-gallery{animation:album-arrive .45s ease both}@keyframes album-arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
 </style>
