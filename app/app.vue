@@ -22,6 +22,7 @@ const links = [
   { label: 'About', to: '/' },
   { label: 'Journal', to: '/blogs' },
   { label: 'Reading', to: '/reading' },
+  { label: 'Photography', to: '/photography' },
 ]
 </script>
 
@@ -34,8 +35,8 @@ const links = [
       </div>
       <div class="rail-middle">
         <nav :aria-label="t('Main navigation')" class="site-nav">
-          <NuxtLink v-for="(link, index) in links" :key="link.to" :to="link.to" active-class="active" :class="{ active: link.to === '/blogs' && route.path.startsWith('/blogs/') }">
-            <span class="nav-number">0{{ index + 1 }}</span>{{ t(link.label) }}
+          <NuxtLink v-for="(link, index) in links" :key="link.to" :to="link.to" active-class="active" :class="{ active: link.to === '/blogs' && route.path.startsWith('/blogs/'), 'photography-nav': link.to === '/photography' }">
+            <span class="nav-number">0{{ index + 1 }}</span><span :class="{ 'nav-label-full': link.to === '/photography' }">{{ t(link.label) }}</span><span v-if="link.to === '/photography'" class="nav-label-compact">{{ t('Photos') }}</span>
           </NuxtLink>
         </nav>
       </div>

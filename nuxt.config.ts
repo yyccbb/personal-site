@@ -2,6 +2,9 @@ import tailwindcss from '@tailwindcss/vite'
 import { englishContent } from './app/content/site'
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    imagekitPrivateKey: '',
+  },
   modules: ['@nuxt/content'],
   content: {
     renderer: { anchorLinks: false },

@@ -99,6 +99,12 @@ button {
   letter-spacing:.12em;
   color:var(--color-accent)
 }
+.site-nav .photography-nav {
+  font-size:22px
+}
+.nav-label-compact {
+  display:none
+}
 .rail-utilities {
   --rail-control-height:44px;
   display:flex;
@@ -825,6 +831,9 @@ button {
     gap:6px;
     font-size:24px
   }
+  .site-nav .photography-nav {
+    font-size:17px
+  }
   .about-hero {
     grid-template-columns:1fr 1fr
   }
@@ -861,19 +870,36 @@ button {
   }
   .rail-middle {
     display:block;
-    flex-shrink:0
+    flex:1 1 auto;
+    min-width:0
   }
   .rail-caption {
     display:none
   }
   .site-nav {
     flex-direction:row;
-    gap:12px
+    gap:12px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding:7px 4px;
+    margin:-7px -4px
   }
   .site-nav a {
     font-family:Arial,sans-serif;
     font-size:12px;
     padding:6px 0
+  }
+  .site-nav .photography-nav {
+    font-size:inherit
+  }
+  .site-nav {
+    font-size:12px
+  }
+  .nav-label-full {
+    display:none
+  }
+  .nav-label-compact {
+    display:inline
   }
   .rail-utilities {
     --rail-control-height:30px;
@@ -998,7 +1024,8 @@ button {
     font-size:28px
   }
   .site-nav {
-    gap:8px
+    gap:8px;
+    font-size:11px
   }
   .site-nav a {
     font-size:11px
@@ -1033,7 +1060,8 @@ button {
     font-size:26px
   }
   .site-nav {
-    gap:6px
+    gap:6px;
+    font-size:10px
   }
   .site-nav a {
     font-size:10px
