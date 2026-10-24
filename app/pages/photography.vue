@@ -75,8 +75,8 @@ useHead({ title: () => `${t('Photography')} — ${profile.value.displayName}` })
 .photo-trigger{display:block;border:0;padding:0;background:transparent;color:inherit;text-align:left}
 .photo-trigger:focus-visible{outline:2px solid var(--color-accent);outline-offset:6px}
 .photo-print-frame{background:var(--color-background);border:1px solid var(--color-border);box-shadow:var(--photo-frame-shadow,0 5px 12px color-mix(in srgb,var(--color-shadow) 35%,transparent));transition:background-color .3s,border-color .3s,box-shadow .3s,transform .4s ease}
-.photo-trigger:focus-visible .photo-print-frame,.photo-trigger.photo-print-frame:focus-visible{background:var(--color-surface);border-color:var(--color-accent);box-shadow:8px 8px 0 var(--color-shadow)}
-@media(hover:hover){.photo-trigger:hover .photo-print-frame,.photo-trigger.photo-print-frame:hover{background:var(--color-surface);border-color:var(--color-accent);box-shadow:8px 8px 0 var(--color-shadow)}}
+.photo-trigger:focus-visible .photo-print-frame,.photo-trigger.photo-print-frame:focus-visible{background:var(--color-surface);border-color:var(--color-accent)}
+@media(hover:hover){.photo-trigger:hover .photo-print-frame,.photo-trigger.photo-print-frame:hover{background:var(--color-surface);border-color:var(--color-accent)}}
 @media(prefers-reduced-motion:reduce){.photo-print-frame{transition:none}}
 .photography-empty{min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--color-muted);gap:12px}
 .photography-empty h2{font:400 30px Georgia,serif;color:var(--color-text);margin:16px 0 0}
