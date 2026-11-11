@@ -1,5 +1,5 @@
 /** CMS-ready content shapes. Replace the local sources with an adapter later. */
-export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; finishedAt?: string; isSample?: boolean; image?: { src: string; alt: string }; note: string; url: string }
+export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; finishedAt?: string; image?: { src: string; alt: string }; note: string; url: string }
 export interface ProfileTag { id: string; label: string }
 export interface Profile { name: string; displayName: string; tags: ProfileTag[]; image: { src: string; alt: string }; role: string; location: string; email: string; introduction: string; biography: string; workingStyle: string; aside: string; personalInterests: string; connectionInvitation: string }
 export interface SiteContent { profile: Profile; reading: ReadingItem[] }
@@ -26,101 +26,54 @@ export const englishContent: SiteContent = {
   },
   "reading": [
     {
-      "title": "Deep Learning",
-      "creator": "Ian Goodfellow, Yoshua Bengio & Aaron Courville",
-      "kind": "Book",
-      "status": "Reading",
-      "image": { "src": "/reading/deep-learning.jpg", "alt": "Deep Learning book cover" },
-      "note": "Revisiting the foundations, especially optimization and representation learning.",
-      "url": "https://www.deeplearningbook.org/"
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "creator": "Zhihong Shao et al.",
+      "kind": "Paper",
+      "status": "Finished",
+      "finishedAt": "2026-02",
+      "image": { "src": "/reading/deepseek.svg", "alt": "DeepSeek source logo" },
+      "note": "Shows how training on carefully selected math data improves a language model’s math skills. It also introduces GRPO, a reinforcement learning method that compares groups of answers and uses less memory than PPO.",
+      "url": "https://arxiv.org/abs/2402.03300"
     },
     {
-      "title": "Designing Data-Intensive Applications",
-      "creator": "Martin Kleppmann",
+      "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",
+      "creator": "DeepSeek-AI",
+      "kind": "Paper",
+      "status": "Finished",
+      "finishedAt": "2026-01",
+      "image": { "src": "/reading/deepseek.svg", "alt": "DeepSeek source logo" },
+      "note": "Explains how DeepSeek-V2 lowers the cost of training and running a language model. It activates only some of its expert networks for each token and compresses the stored attention data to use less memory.",
+      "url": "https://arxiv.org/html/2405.04434v5"
+    },
+    {
+      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "creator": "Rafael Rafailov et al.",
+      "kind": "Paper",
+      "status": "Finished",
+      "finishedAt": "2025-10",
+      "image": { "src": "/reading/neurips.png", "alt": "NeurIPS conference logo" },
+      "note": "A simpler way to train language models to follow human preferences. It learns directly from pairs of preferred and rejected answers, without training a separate reward model or running a reinforcement learning loop.",
+      "url": "https://arxiv.org/abs/2305.18290"
+    },
+    {
+      "title": "Exit West: A Novel",
+      "creator": "Mohsin Hamid",
       "kind": "Book",
-      "status": "Reading",
-      "image": { "src": "/reading/designing-data-intensive-applications.jpg", "alt": "Designing Data-Intensive Applications book cover" },
-      "note": "Reading the first edition with research infrastructure and reproducible experiments in mind.",
-      "url": "https://martin.kleppmann.com/2017/03/27/designing-data-intensive-applications.html"
+      "status": "Finished",
+      "finishedAt": "2025-06",
+      "image": { "src": "/reading/exit-west.jpg", "alt": "Exit West: A Novel by Mohsin Hamid book cover" },
+      "note": "Nadia and Saeed flee a city at war through mysterious doors that lead to other countries. A story about migration, love, and how people change as they search for a new home.",
+      "url": "https://www.penguin.co.uk/books/300265/exit-west-by-hamid-mohsin/9780241979075"
     },
     {
       "title": "Attention Is All You Need",
       "creator": "Ashish Vaswani et al.",
       "kind": "Paper",
       "status": "Finished",
-      "finishedAt": "2024-06",
+      "finishedAt": "2025-02",
       "image": { "src": "/reading/neurips.png", "alt": "NeurIPS conference logo" },
-      "note": "A paper I return to when tracing the design choices behind attention-based models.",
+      "note": "Introduces the Transformer, which uses attention to connect words across a sentence. It processes words in parallel rather than one at a time, making training faster and improving translation quality.",
       "url": "https://arxiv.org/abs/1706.03762"
-    },
-    {
-      "title": "The Bitter Lesson",
-      "creator": "Richard Sutton",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2026-05",
-      "note": "A useful prompt for thinking about what to build by hand and what to let a system learn.",
-      "url": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html"
-    },
-    {
-      "title": "Sample: Small experiments, useful questions",
-      "creator": "Sample entry",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2026-09",
-      "isSample": true,
-      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
-      "url": "#sample-small-experiments"
-    },
-    {
-      "title": "Sample: What a benchmark leaves out",
-      "creator": "Sample entry",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2025-11",
-      "isSample": true,
-      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
-      "url": "#sample-benchmark"
-    },
-    {
-      "title": "Sample: Keeping a research notebook",
-      "creator": "Sample entry",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2025-03",
-      "isSample": true,
-      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
-      "url": "#sample-research-notebook"
-    },
-    {
-      "title": "Sample: A slower way to learn",
-      "creator": "Sample entry",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2024-01",
-      "isSample": true,
-      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
-      "url": "#sample-slower-learning"
-    },
-    {
-      "title": "Sample: Notes on useful tools",
-      "creator": "Sample entry",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2023-10",
-      "isSample": true,
-      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
-      "url": "#sample-useful-tools"
-    },
-    {
-      "title": "Sample: The questions worth keeping",
-      "creator": "Sample entry",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2023-02",
-      "isSample": true,
-      "note": "Temporary reading entry with a sample finish date for trying the timeline.",
-      "url": "#sample-questions"
     }
   ]
 }

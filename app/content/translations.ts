@@ -77,6 +77,7 @@ export const chineseCopy: Record<string, string> = {
   "In view": "当前可见",
   "Drag to explore": "拖动浏览",
   "Open source": "查看原文",
+  "Opens in a new tab": "在新标签页中打开",
   "Reading notes": "阅读笔记",
   "Notes from the shelf": "书架上的笔记",
   "Books, papers, and articles I’m exploring, with a few thoughts to return to.": "正在探索的书籍、论文与文章，以及一些值得回看的思考。",

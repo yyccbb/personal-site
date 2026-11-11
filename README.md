@@ -28,6 +28,8 @@ On `main`, desktop appearance and language controls sit side by side as sliders,
 
 English and Chinese profile and Reading content live in `app/content/site.ts` and `app/content/zh.ts`. Interface translations live in `app/content/translations.ts`; `useSiteContent` supplies reactive profile and Reading content, and `useJournal` supplies journal metadata for either language. Reading metadata links to primary sources.
 
+Every Reading entry includes an image: the book cover for books, a conference or source logo for papers, and the source logo for articles. Personal sources without an official logo use a simple source-name or domain wordmark. Keep assets under `public/reading/`, with `image.src` and translated `image.alt` in both content files. `finishedAt` stores the reading completion month as `YYYY-MM`, independently of the work's publication date. See [Reading image sources](docs/reading-images.md) for asset provenance.
+
 `npm run typecheck` checks TypeScript, and `npm run build` verifies a production build. Nuxt Content maintains an internal SQLite index and provides its article query endpoints; no external database, analytics, or CMS account is required. Nuxt's standard build output can be deployed to Vercel later.
 
 ## Photography

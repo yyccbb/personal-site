@@ -22,101 +22,54 @@ export const chineseContent: SiteContent = {
   },
   "reading": [
     {
-      "title": "深度学习",
-      "creator": "Ian Goodfellow、Yoshua Bengio、Aaron Courville",
-      "kind": "Book",
-      "status": "Reading",
-      "image": { "src": "/reading/deep-learning.jpg", "alt": "《深度学习》封面" },
-      "note": "重新梳理基础，尤其是优化与表征学习。",
-      "url": "https://www.deeplearningbook.org/"
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "creator": "Zhihong Shao 等",
+      "kind": "Paper",
+      "status": "Finished",
+      "finishedAt": "2026-02",
+      "image": { "src": "/reading/deepseek.svg", "alt": "DeepSeek 来源标志" },
+      "note": "介绍如何通过精心筛选的数学数据提升语言模型的数学能力，并提出 GRPO：一种比较同一组答案、比 PPO 更节省内存的强化学习方法。",
+      "url": "https://arxiv.org/abs/2402.03300"
     },
     {
-      "title": "数据密集型应用系统设计",
-      "creator": "Martin Kleppmann",
+      "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",
+      "creator": "DeepSeek-AI",
+      "kind": "Paper",
+      "status": "Finished",
+      "finishedAt": "2026-01",
+      "image": { "src": "/reading/deepseek.svg", "alt": "DeepSeek 来源标志" },
+      "note": "介绍 DeepSeek-V2 如何降低语言模型的训练和运行成本：每个词元只调用部分专家网络，并压缩注意力机制保存的数据，以减少内存占用。",
+      "url": "https://arxiv.org/html/2405.04434v5"
+    },
+    {
+      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "creator": "Rafael Rafailov 等",
+      "kind": "Paper",
+      "status": "Finished",
+      "finishedAt": "2025-10",
+      "image": { "src": "/reading/neurips.png", "alt": "NeurIPS 会议标志" },
+      "note": "一种让语言模型学习人类偏好的简单方法。它直接从偏好与不偏好的答案对中学习，无需单独训练奖励模型，也无需运行强化学习循环。",
+      "url": "https://arxiv.org/abs/2305.18290"
+    },
+    {
+      "title": "Exit West: A Novel",
+      "creator": "莫欣·哈米德",
       "kind": "Book",
-      "status": "Reading",
-      "image": { "src": "/reading/designing-data-intensive-applications.jpg", "alt": "《数据密集型应用系统设计》封面" },
-      "note": "结合研究基础设施和可复现实验，阅读第一版。",
-      "url": "https://martin.kleppmann.com/2017/03/27/designing-data-intensive-applications.html"
+      "status": "Finished",
+      "finishedAt": "2025-06",
+      "image": { "src": "/reading/exit-west.jpg", "alt": "莫欣·哈米德《Exit West: A Novel》封面" },
+      "note": "娜迪亚和赛义德通过通往其他国家的神秘门，逃离战火中的城市。故事讲述迁徙、爱情，以及人们在寻找新家的过程中如何改变。",
+      "url": "https://www.penguin.co.uk/books/300265/exit-west-by-hamid-mohsin/9780241979075"
     },
     {
       "title": "Attention Is All You Need",
       "creator": "Ashish Vaswani 等",
       "kind": "Paper",
       "status": "Finished",
-      "finishedAt": "2024-06",
+      "finishedAt": "2025-02",
       "image": { "src": "/reading/neurips.png", "alt": "NeurIPS 会议标志" },
-      "note": "在梳理注意力模型的设计选择时，我经常重读这篇论文。",
+      "note": "提出 Transformer，用注意力机制联系句子中的词。它能并行处理词语，而不必逐词处理，从而加快训练并提高翻译质量。",
       "url": "https://arxiv.org/abs/1706.03762"
-    },
-    {
-      "title": "苦涩的教训",
-      "creator": "Richard Sutton",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2026-05",
-      "note": "帮助我思考：哪些部分值得手工构建，哪些应该交给系统去学习。",
-      "url": "http://www.incompleteideas.net/IncIdeas/BitterLesson.html"
-    },
-    {
-      "title": "示例：小实验，有用的问题",
-      "creator": "示例条目",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2026-09",
-      "isSample": true,
-      "note": "用于体验时间线的临时阅读条目，完成日期为示例数据。",
-      "url": "#sample-small-experiments"
-    },
-    {
-      "title": "示例：基准测试遗漏了什么",
-      "creator": "示例条目",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2025-11",
-      "isSample": true,
-      "note": "用于体验时间线的临时阅读条目，完成日期为示例数据。",
-      "url": "#sample-benchmark"
-    },
-    {
-      "title": "示例：记录研究笔记",
-      "creator": "示例条目",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2025-03",
-      "isSample": true,
-      "note": "用于体验时间线的临时阅读条目，完成日期为示例数据。",
-      "url": "#sample-research-notebook"
-    },
-    {
-      "title": "示例：放慢学习的脚步",
-      "creator": "示例条目",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2024-01",
-      "isSample": true,
-      "note": "用于体验时间线的临时阅读条目，完成日期为示例数据。",
-      "url": "#sample-slower-learning"
-    },
-    {
-      "title": "示例：关于实用工具的笔记",
-      "creator": "示例条目",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2023-10",
-      "isSample": true,
-      "note": "用于体验时间线的临时阅读条目，完成日期为示例数据。",
-      "url": "#sample-useful-tools"
-    },
-    {
-      "title": "示例：值得留存的问题",
-      "creator": "示例条目",
-      "kind": "Article",
-      "status": "Finished",
-      "finishedAt": "2023-02",
-      "isSample": true,
-      "note": "用于体验时间线的临时阅读条目，完成日期为示例数据。",
-      "url": "#sample-questions"
     }
   ]
 }

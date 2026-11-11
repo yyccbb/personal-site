@@ -54,7 +54,7 @@ useHead({ title: () => `${t('Reading')} — ${profile.value.displayName}` })
         <div ref="reading-list" class="library-list">
           <article v-for="item in visibleItems" :key="item.url" class="library-entry">
             <div class="library-marker">
-              <img v-if="item.image" :src="item.image.src" :alt="item.image.alt" loading="lazy" :class="{ 'library-logo': item.kind === 'Paper' }" />
+              <img v-if="item.image" :src="item.image.src" :alt="item.image.alt" loading="lazy" :class="{ 'library-logo': item.kind !== 'Book' }" />
               <span v-else class="library-text-symbol" aria-hidden="true">¶</span>
               <span class="library-kind">{{ t(item.kind) }}</span>
             </div>
@@ -62,7 +62,7 @@ useHead({ title: () => `${t('Reading')} — ${profile.value.displayName}` })
               <h2>{{ item.title }}</h2>
               <p class="library-creator">{{ item.creator }}</p>
               <p class="library-note">{{ item.note }}</p>
-              <a v-if="!item.isSample" class="library-source" :href="item.url" :aria-label="`${t('Open source')}: ${item.title}`">
+              <a class="library-source" :href="item.url" target="_blank" rel="noopener noreferrer" :aria-label="`${t('Open source')}: ${item.title} (${t('Opens in a new tab')})`">
                 {{ t('Open source') }} <span aria-hidden="true">↗</span>
               </a>
             </div>
