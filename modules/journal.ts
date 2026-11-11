@@ -25,7 +25,7 @@ function validateArticle(filename: string, source: string) {
   return result.data
 }
 
-// Group H2 sections so existing spacing and paragraph drop caps stay intact.
+// Group H2 sections so the renderer can apply consistent section spacing.
 function groupSections(body: MarkdownRoot) {
   const nodes: MinimalNode[] = []
   let section: MinimalElement | undefined

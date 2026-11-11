@@ -48,7 +48,7 @@ useSeoMeta({ title: () => `${post.value?.title} — ${profile.value.displayName}
 </script>
 
 <template>
-  <article v-if="post" class="editorial-page article-page">
+  <article v-if="post" class="editorial-page article-page" :lang="post.language">
     <NuxtLink to="/blogs" class="pill-link button-primary back-link"><span aria-hidden="true">←</span>{{ t("Back to journal") }}</NuxtLink>
     <header class="article-header"><p class="eyebrow"><span class="eyebrow-line" />{{ t(post.category) }} / {{ post.readingTime }}</p><h1>{{ post.title }}</h1><p class="article-deck">{{ post.subtitle }}</p><div class="article-meta"><span>{{ t("By") }} {{ post.author }}</span><time :datetime="post.publishedAt">{{ post.date }}</time></div></header>
     <div class="article-rule" />
