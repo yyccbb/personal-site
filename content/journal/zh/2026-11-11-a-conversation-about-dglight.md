@@ -5,6 +5,9 @@ author: "俞辰博"
 date: "2026-11-11"
 category: "research"
 readingMinutes: 6
+image:
+  src: /journal/a-conversation-about-dglight/cover.png
+  alt: "DGLight 架构图"
 ---
 
 ## 从毕业设计延伸出来的问题

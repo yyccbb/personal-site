@@ -5,6 +5,9 @@ author: "YU Chenbo"
 date: "2026-11-11"
 category: "research"
 readingMinutes: 7
+image:
+  src: /journal/a-conversation-about-dglight/cover.png
+  alt: "architecture diagram of DGLight"
 ---
 
 ## Questions beyond the final-year project
