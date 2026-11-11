@@ -17,7 +17,7 @@ readingMinutes: 6
 
 ## Critic 的偏差会传递给 LLM 吗
 
-* 关于 Critic 的评价偏差：DGLight 的 GRPO 奖励直接来源于预训练 DQN Critic 的 Q-value，因此 LLM 的策略优化在一定程度上依赖于 Critic 的评价准确性。如果 Critic 在某些交通状态下存在估值偏差，那么是否意味着 LLM 可能继承甚至放大这些偏差呢？
+**问：** 关于 Critic 的评价偏差：DGLight 的 GRPO 奖励直接来源于预训练 DQN Critic 的 Q-value，因此 LLM 的策略优化在一定程度上依赖于 Critic 的评价准确性。如果 Critic 在某些交通状态下存在估值偏差，那么是否意味着 LLM 可能继承甚至放大这些偏差呢？
 
 > Critic 难免存在一定程度的估值偏差，具体取决于它的训练方式。我做这项工作时，由于时间限制，没能非常仔细地研究各个候选 Critic 的训练方式。不过，我观察到，在一个城市的数据上进行模拟训练的 DQN Critic，迁移到陌生城市测试时，都会出现明显的性能下降。因此，我的初步判断是，这些 Critic 网络都存在一定的过拟合倾向。
 >
@@ -29,7 +29,7 @@ readingMinutes: 6
 
 ## 从单个路口到整个路网
 
-* 关于多路口联合决策：我注意到 DGLight 在 Rollout 阶段对每个路口分别采样和评估候选动作，最后将各路口的候选动作组合成联合动作。而在我实际跑仿真实验时，会遇到相邻路口存在排队溢出等现象（也就是路口死锁），那么这是否可能出现局部最优但整体次优的情况呢？
+**问：** 关于多路口联合决策：我注意到 DGLight 在 Rollout 阶段对每个路口分别采样和评估候选动作，最后将各路口的候选动作组合成联合动作。而在我实际跑仿真实验时，会遇到相邻路口存在排队溢出等现象（也就是路口死锁），那么这是否可能出现局部最优但整体次优的情况呢？
 
 > 如果我的判断准确，我的数据集里没有出现过排队溢出的现象。这个确实是我没有注意到的一点。这点我不能下结论，因为我不确定CityFlow模拟器支不支持排队溢出的情况。
 
@@ -37,9 +37,7 @@ readingMinutes: 6
 
 ## 为什么选择 Critic-guided GRPO
 
-在这次交流中，我阅读了同学分享的 [CoLLMLight](https://openreview.net/forum?id=KeJqoEVOeY)。借着第三个问题，我也回头梳理了 DGLight 的设计出发点：在当时的资源条件下，我需要怎样的奖励信号，以及怎样组织数据收集与后训练。
-
-* 关于与 CoLLMLight 后训练机制的比较。 我之前关注到了 CoLLMLight 这篇文章（是LLMLight同一团队的最新文章），它是采用了 PPO，通过实时决策效果和推理效用设计奖励，而 DGLight 利用 DQN Critic 的 Q-value 为候选动作提供奖励，并通过 GRPO 优化策略。相比于 CoLLMLight 您认为 Critic-guided GRPO 相比基于环境反馈的 PPO，主要优势是什么？是否存在将两者结合的可能，例如利用 Critic 提供细粒度动作价值反馈，同时引入环境级奖励约束，减少 Critic 估值偏差带来的影响？
+**问：** 关于与 [CoLLMLight](https://openreview.net/forum?id=KeJqoEVOeY) 后训练机制的比较。 我之前关注到了 CoLLMLight 这篇文章（是LLMLight同一团队的最新文章），它是采用了 PPO，通过实时决策效果和推理效用设计奖励，而 DGLight 利用 DQN Critic 的 Q-value 为候选动作提供奖励，并通过 GRPO 优化策略。相比于 CoLLMLight 您认为 Critic-guided GRPO 相比基于环境反馈的 PPO，主要优势是什么？是否存在将两者结合的可能，例如利用 Critic 提供细粒度动作价值反馈，同时引入环境级奖励约束，减少 Critic 估值偏差带来的影响？
 
 > 我采用这套流程的初衷，其实是因为算力不够。我想要一个在前期可以贪心估计每个时间点、每个路口、每个 signal phase 价值的方案，以便后续根据算力，动态设计 rollout 的数据规模。
 >

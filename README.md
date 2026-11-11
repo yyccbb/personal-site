@@ -38,7 +38,7 @@ Photography uses overlapping print stacks at `/photography`, with automatic Imag
 
 ## Writing journal articles
 
-Create files in `content/journal/en/` or `content/journal/zh/`, using `YYYY-MM-DD-slug.md`. For example, `2026-09-18-what-a-good-evaluation-misses.md` is served at `/blogs/what-a-good-evaluation-misses`. Both translations must use the same filename and publication date. Each slug must be unique within a language. Articles appear newest first, with the slug breaking date ties.
+Create files in `content/journal/en/` or `content/journal/zh/`, using `YYYY-MM-DD-slug.md`. For example, `2026-11-11-a-conversation-about-dglight.md` is served at `/blogs/a-conversation-about-dglight`. Both translations must use the same filename and publication date. Each slug must be unique within a language. Articles appear newest first, with the slug breaking date ties.
 
 The selected language takes priority. If its translation is missing, the site shows the available article version and keeps the interface, date, and reading-time labels in the selected language. You can publish an article with just one language version.
 
@@ -53,7 +53,7 @@ date: "2026-09-18"
 category: research
 readingMinutes: 5
 image:
-  src: /media/journal/what-a-good-evaluation-misses/cover.jpg
+  src: /media/journal/a-conversation-about-dglight/cover.jpg
   alt: "A description of the cover image"
 ---
 
@@ -66,7 +66,7 @@ Write paragraphs separated by blank lines. Use **bold**, *italic*, and
 
 Use subsections, lists, quotations, and fenced code blocks when useful.
 
-![A description of the image](/media/journal/what-a-good-evaluation-misses/photo.jpg)
+![A description of the image](/media/journal/a-conversation-about-dglight/photo.jpg)
 ```
 
 `title`, `subtitle`, `date`, `category`, and `readingMinutes` are required. The subtitle also supplies card summaries and SEO descriptions. Dates must be valid ISO calendar dates and match the filename prefix. Categories are `research` or `travelling`; reading minutes must be a positive integer and are set manually. `author` defaults to the profile name in the article's language. The optional `image` field supplies the journal card image and requires `src` and `alt`.

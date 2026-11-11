@@ -17,7 +17,7 @@ The Chinese version preserves the student's questions verbatim and presents my l
 
 ## Can Critic bias carry over to the LLM?
 
-* On evaluation bias in the Critic: DGLight's GRPO rewards come directly from the Q-values of a pretrained DQN Critic, so the optimization of the LLM's policy depends to some extent on the accuracy of the Critic's evaluations. If the Critic's value estimates are biased in certain traffic states, does that mean the LLM could inherit or even amplify those biases?
+**Question:** On evaluation bias in the Critic: DGLight's GRPO rewards come directly from the Q-values of a pretrained DQN Critic, so the optimization of the LLM's policy depends to some extent on the accuracy of the Critic's evaluations. If the Critic's value estimates are biased in certain traffic states, does that mean the LLM could inherit or even amplify those biases?
 
 > Some degree of estimation bias in the Critic is inevitable, and its extent depends on how the Critic is trained. Due to time constraints during this project, I was unable to study the training methods of the candidate Critics in great detail. However, I observed that DQN Critics trained in simulation using data from one city all showed a noticeable drop in performance when tested in an unfamiliar city. My preliminary judgment was therefore that these Critic networks had some tendency to overfit.
 >
@@ -29,7 +29,7 @@ Under [GRPO's group-relative advantage calculation](https://arxiv.org/html/2402.
 
 ## From individual intersections to the whole network
 
-* On joint decision-making across intersections: I noticed that during rollout, DGLight samples and evaluates candidate actions separately for each intersection, then combines these into joint actions. In my own simulation experiments, I encounter queue spillback between adjacent intersections, leading to intersection deadlocks. Could this result in decisions that are locally optimal but globally suboptimal?
+**Question:** On joint decision-making across intersections: I noticed that during rollout, DGLight samples and evaluates candidate actions separately for each intersection, then combines these into joint actions. In my own simulation experiments, I encounter queue spillback between adjacent intersections, leading to intersection deadlocks. Could this result in decisions that are locally optimal but globally suboptimal?
 
 > If my judgment is correct, queue spillback did not occur in my datasets. This is indeed something I had not noticed. I cannot draw a conclusion on this point because I am not sure whether the CityFlow simulator supports queue spillback.
 
@@ -37,9 +37,7 @@ Under [GRPO's group-relative advantage calculation](https://arxiv.org/html/2402.
 
 ## Why choose Critic-guided GRPO?
 
-During this discussion, I read [CoLLMLight](https://openreview.net/forum?id=KeJqoEVOeY), which the student shared with me. Their third question also prompted me to revisit the starting point for DGLight's design: what kind of reward signal I needed, and how to organize data collection and post-training with the resources available when I undertook the project.
-
-* On the comparison with CoLLMLight's post-training mechanism: I previously came across CoLLMLight, the latest paper from the same team as LLMLight. It uses PPO, with rewards designed around real-time decision outcomes and reasoning utility, whereas DGLight uses a DQN Critic's Q-values to reward candidate actions and optimizes the policy through GRPO. What do you see as the main advantages of Critic-guided GRPO over PPO based on environmental feedback? Could the two be combined, for example by using the Critic to provide fine-grained action-value feedback while introducing environment-level reward constraints to reduce the impact of biased Critic estimates?
+**Question:** On the comparison with [CoLLMLight](https://openreview.net/forum?id=KeJqoEVOeY)'s post-training mechanism: I previously came across CoLLMLight, the latest paper from the same team as LLMLight. It uses PPO, with rewards designed around real-time decision outcomes and reasoning utility, whereas DGLight uses a DQN Critic's Q-values to reward candidate actions and optimizes the policy through GRPO. What do you see as the main advantages of Critic-guided GRPO over PPO based on environmental feedback? Could the two be combined, for example by using the Critic to provide fine-grained action-value feedback while introducing environment-level reward constraints to reduce the impact of biased Critic estimates?
 
 > My original reason for adopting this pipeline was insufficient compute. I wanted a way to greedily estimate the value of every signal phase at every intersection and time step in advance, so that I could later adjust the scale of rollout data dynamically according to the available compute.
 >

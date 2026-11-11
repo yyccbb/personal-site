@@ -1,36 +1,17 @@
 <script setup lang="ts">
-import { NuxtLink } from '#components'
-
 const { profile } = useSiteContent()
 const { t } = useSitePreferences()
 const { posts, ready, error } = useJournal()
 await ready
 if (error.value) throw error.value
-const previews = [
-  { slug: 'preview-tools', title: 'Small tools, useful discoveries', category: 'research' },
-  { slug: 'preview-weekend', title: 'A weekend without a checklist', category: 'travelling' },
-  { slug: 'preview-experiment', title: 'Questions for the next experiment', category: 'research' },
-] as const
-const cards = computed(() => [
-  ...posts.value.map(post => ({ ...post, isPreview: false })),
-  ...previews.map(post => ({
-    ...post,
-    title: t(post.title),
-    date: t('Coming soon'),
-    subtitle: '',
-    readingTime: t('Preview card'),
-    image: undefined,
-    isPreview: true,
-  })),
-])
 const category = ref('all')
 const categories = ['all', 'research', 'travelling'] as const
 const options = computed(() => categories.map(value => ({
   value,
   label: t(value === 'all' ? 'All' : value),
-  count: cards.value.filter(post => value === 'all' || post.category === value).length,
+  count: posts.value.filter(post => value === 'all' || post.category === value).length,
 })))
-const visiblePosts = computed(() => cards.value.filter(post => category.value === 'all' || post.category === category.value))
+const visiblePosts = computed(() => posts.value.filter(post => category.value === 'all' || post.category === category.value))
 const postList = useTemplateRef<HTMLElement>('post-list')
 const canScrollLeft = ref(false)
 const canScrollRight = ref(false)
@@ -111,11 +92,10 @@ useHead({ title: () => `${t('Journal')} — ${profile.value.displayName}` })
       aria-live="polite"
       @scroll.passive="updateScrollControls"
     >
-      <component
-        :is="post.isPreview ? 'article' : NuxtLink"
+      <NuxtLink
         v-for="post in visiblePosts"
         :key="post.slug"
-        :to="post.isPreview ? undefined : `/blogs/${post.slug}`"
+        :to="`/blogs/${post.slug}`"
         class="post-card"
       >
         <div class="post-card-image">
@@ -125,9 +105,9 @@ useHead({ title: () => `${t('Journal')} — ${profile.value.displayName}` })
           <div class="post-card-top"><span>{{ t(post.category) }}</span><span>{{ post.date }}</span></div>
           <h2>{{ post.title }}</h2>
           <p v-if="post.subtitle">{{ post.subtitle }}</p>
-          <div class="post-card-bottom"><span>{{ post.readingTime }}</span><span v-if="!post.isPreview" class="round-arrow" aria-hidden="true">↗</span></div>
+          <div class="post-card-bottom"><span>{{ post.readingTime }}</span><span class="round-arrow" aria-hidden="true">↗</span></div>
         </div>
-      </component>
+      </NuxtLink>
     </section>
   </div>
 </template>
