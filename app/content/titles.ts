@@ -9,15 +9,15 @@ export const titleTemplates = {
   },
   reading: {
     en: 'Reading|*and reflections.*',
-    zh: '阅读|*与思考。*',
+    zh: '阅读与|*感悟。*',
   },
   photography: {
     en: 'Ways of|*seeing.*',
     zh: '目光|*所至。*',
   },
   aboutDetails: {
-    en: '*Research*,|and the *life* around it.',
-    zh: '*研究*，|以及研究之外的*生活*。',
+    en: '*Research,*|and the *life* around it.',
+    zh: '*科研，*|和我的*生活*。',
   },
 } satisfies Record<string, Record<SiteLanguage, string>>
 
