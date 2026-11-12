@@ -41,7 +41,7 @@ useHead({ title: () => `${t('Photography')} — ${profile.value.displayName}` })
     <div class="eyebrow"><span class="eyebrow-line" />{{ t('Photography / 004') }}</div>
     <header v-if="!selected" class="page-intro">
       <div class="photography-title-row">
-        <h1>{{ t('Ways of') }}<br><em>{{ t('seeing.') }}</em></h1>
+        <TemplatedTitle name="photography" />
         <component
           :is="photographySiteUrl ? 'a' : 'button'"
           :href="photographySiteUrl || undefined"

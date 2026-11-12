@@ -34,7 +34,7 @@ useHead({ title: () => `${t('Reading')} — ${profile.value.displayName}` })
   <div class="editorial-page reading-page">
     <div class="eyebrow"><span class="eyebrow-line" />{{ t('Reading / 003') }}</div>
     <header class="page-intro">
-      <h1>{{ t('Reading') }}<br><em>{{ t('and reflections.') }}</em></h1>
+      <TemplatedTitle name="reading" />
       <p>{{ t('Books, papers, and articles I’m exploring, with a few thoughts to return to.') }}</p>
     </header>
 

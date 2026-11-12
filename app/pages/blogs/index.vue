@@ -69,7 +69,7 @@ useHead({ title: () => `${t('Journal')} — ${profile.value.displayName}` })
   <div class="editorial-page listing-page">
     <div class="eyebrow"><span class="eyebrow-line" />{{ t('Journal / 002') }}</div>
     <header class="page-intro">
-      <h1>{{ t('Notes from') }}<br><em>{{ t('everywhere.') }}</em></h1>
+      <TemplatedTitle name="journal" />
       <p>{{ t('Reflections on new technology, notes from research, and stories from places I’ve been.') }}</p>
     </header>
     <div class="collection-toolbar">

@@ -30,16 +30,13 @@ useHead({ title: () => `${t('About')} — ${profile.value.displayName}` })
       </div>
       <figure class="portrait-frame">
         <img :src="profile.image.src" :alt="profile.image.alt" width="1280" height="853" />
-        <figcaption>{{ t("Fig. 01 — Portrait") }}</figcaption>
+        <figcaption>{{ t("Fig. 01 — Photo of me") }}</figcaption>
       </figure>
     </section>
     <section class="about-details section-divider">
       <p class="section-index">{{ t("A little about me") }} <span>↘</span></p>
       <div>
-        <h2>
-          <em>{{ t("Research") }}</em>{{ locale === 'zh' ? '，' : ',' }}<br>
-          {{ t("and the") }}{{ locale === 'zh' ? '' : ' ' }}<em>{{ t("life") }}</em>{{ locale === 'zh' ? '' : ' ' }}{{ t("around it.") }}
-        </h2>
+        <TemplatedTitle name="aboutDetails" as="h2" />
         <p>{{ [profile.biography, profile.workingStyle].join(locale === 'zh' ? '' : ' ') }}</p>
         <p>{{ profile.aside }}</p>
         <p>{{ profile.personalInterests }}</p>

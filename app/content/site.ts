@@ -6,7 +6,7 @@ export interface SiteContent { profile: Profile; reading: ReadingItem[] }
 
 export const englishContent: SiteContent = {
   "profile": {
-    "name": "YU Chenbo",
+    "name": "Yu Chenbo",
     "displayName": "Chenbo",
     "tags": [
       { "id": "research", "label": "Researcher" },
