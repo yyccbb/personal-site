@@ -68,7 +68,13 @@ button {
   text-transform:uppercase;
   letter-spacing:.18em;
   color:var(--color-muted);
-  text-align:center
+  text-align:center;
+  /* Optically center under the wordmark: drop the trailing letter spacing and the space after the closing punctuation. */
+  margin-right:calc(-.18em - 2px)
+}
+.rail-caption:lang(zh) {
+  /* A full-width closing 。 leaves the right half of its em box empty. */
+  margin-right:calc(-.68em - 2px)
 }
 .site-nav {
   display:flex;

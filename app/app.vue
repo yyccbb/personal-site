@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { profile } = useSiteContent()
-const { t } = useSitePreferences()
+const { t, locale } = useSitePreferences()
 const railUtilities = useTemplateRef<HTMLElement>('rail-utilities')
 const railControlHeight = ref<number>()
 let contactResizeObserver: ResizeObserver | undefined
@@ -31,7 +31,7 @@ const links = [
     <aside class="site-rail">
       <div class="rail-brand">
         <NuxtLink to="/" class="wordmark" :aria-label="`${profile.displayName}, ${t('Home')}`">YC<span class="wordmark-dot">.</span></NuxtLink>
-        <span class="rail-caption">{{ t("To research,") }}<br>{{ t("to music,") }}<br>{{ t("to life.") }}</span>
+        <span class="rail-caption">{{ t("To research,") }}<br v-if="locale !== 'zh'">{{ t("to music,") }}<br v-if="locale !== 'zh'">{{ t("to life.") }}</span>
       </div>
       <div class="rail-middle">
         <nav :aria-label="t('Main navigation')" class="site-nav">
