@@ -44,7 +44,7 @@ useHead({ title: () => `${t('About')} — ${profile.value.displayName}` })
       </div>
     </section>
     <section class="latest-section section-divider">
-      <div class="section-heading"><p class="section-index">{{ t("From the journal") }}</p><NuxtLink class="pill-link button-primary" to="/blogs">{{ t("All entries") }} <span aria-hidden="true">↗</span></NuxtLink></div>
+      <div class="section-heading"><p class="section-index">{{ t("From the journal") }} <span>↘</span></p><NuxtLink class="pill-link button-primary" to="/blogs">{{ t("All entries") }} <span aria-hidden="true">↗</span></NuxtLink></div>
       <NuxtLink v-for="post in posts" :key="post.slug" :to="`/blogs/${post.slug}`" class="latest-row">
         <span>{{ post.date }}</span><strong>{{ post.title }}</strong><span class="latest-arrow">↗</span>
       </NuxtLink>
