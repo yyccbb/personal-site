@@ -4,27 +4,17 @@ A Nuxt 4, Vue 3, TypeScript, and Tailwind CSS personal site. Profile and Reading
 
 ## Explore
 
-`main` is the current website: the editorial design, with horizontal image-ready blog cards, category filters, and a notebook-inspired reading shelf. Run `npm ci` the first time, then `npm run dev`, and open the local URL shown by Nuxt.
+The site uses an editorial design, with horizontal image-ready blog cards, category filters, and a notebook-inspired reading shelf. Run `npm ci` the first time, then `npm run dev`, and open the local URL shown by Nuxt.
 
-Five earlier visual directions remain available on separate branches:
-
-- `codex/design-01-editorial` — a warm, editorial portfolio
-- `codex/design-02-studio` — a bold, graphic studio site
-- `codex/design-03-journal` — a quiet, reading-led journal
-- `codex/design-04-research-notebook` — an academic notebook with restrained serif type, research topics, and a chronological writing index
-- `codex/design-05-systems-console` — a technical dashboard with a grid, monospace navigation, and a searchable reading catalog
-
-Stop the server before switching designs. Each version includes About (`/`), Blogs (`/blogs`), two full posts, and Reading (`/reading`). The profile and posts are example content, ready to replace with your details.
-
-On `main`, Blogs starts with **All** and can filter by **Research** or **Travelling**. Reading filters by **All**, **Book**, **Paper**, or **Article**. Both use the same filter component and styling. Blog cards scroll horizontally using swipe, a trackpad, left/right arrow keys anywhere on the Blogs page, or arrow buttons. Three display-only preview cards show the scrolling layout without linking to empty articles; their titles are defined in the Blogs page.
+Blogs starts with **All** and can filter by **Research** or **Travelling**. Reading filters by **All**, **Book**, **Paper**, or **Article**. Both use the same filter component and styling. Blog cards scroll horizontally using swipe, a trackpad, left/right arrow keys anywhere on the Blogs page, or arrow buttons.
 
 Journal articles use the same filled, rounded **Back to journal** button style as **Browse my journal**, along with smaller responsive titles. Previous/next links keep their direction labels and boxed shortcut keys on the same row at every screen size. Article titles below use 18px text on desktop and 14px at widths of 600px or less, and wrap within each column. The links follow the journal order and wrap at either end. **Shift + Left Arrow** opens the previous article; **Shift + Right Arrow** opens the next. These shortcuts ignore editable fields and are active only on article pages.
 
-About, Journal, and Reading share spacing values in `main.css`: 8px for close metadata, 16px between text blocks, 24px between related content, and 40px around sections (32px on mobile). About's hero follows its content height; Journal and Reading share the same intro spacing. Journal article pages use a separate reading rhythm and English/Chinese serif type hierarchy, documented in [Article typography](docs/article-typography.md). Portrait framing, card hover clearance, reading timeline spacing, and control dimensions retain their own layout requirements.
+About, Journal, and Reading share spacing values in `main.css`: 8px for close metadata, 16px between text blocks, 24px between related content, and 40px around sections (32px on mobile). About's hero follows its content height; Journal and Reading share the same intro spacing. Journal article pages use a separate reading rhythm and English/Chinese serif type hierarchy. Portrait framing, card hover clearance, reading timeline spacing, and control dimensions retain their own layout requirements.
 
-Blog images are deliberately blank. To add one, put your image in `public/` and add the optional `image` field to the article's frontmatter in each translation, as shown below. The shorter 5:2 frame sits flush against the left edge with a 24px inset on the right. Categories are stable lowercase keys (`research` and `travelling`), with translated display labels.
+Blog cards without an image show a blank frame. To add one, put your image under `public/journal/<slug>/` and add the optional `image` field to the article's frontmatter in each translation, as shown below. The shorter 5:2 frame sits flush against the left edge with a 24px inset on the right. Categories are stable lowercase keys (`research` and `travelling`), with translated display labels.
 
-On `main`, desktop appearance and language controls sit side by side as sliders, with Light/English on the left and Dark/简体中文 on the right. Their height follows the responsive contact button. Sun/moon and A/文 icons show the current selection, using the category filters’ shared colors. Mobile uses circular buttons with the same icons and click-to-toggle behavior. The default appearance follows the system, with no third button state; a system appearance change resumes automatic following after a manual toggle. Cookies retain manual choices between visits and provide the correct language during server rendering. A small inline script applies the appearance before rendering to avoid a bright flash. The five earlier design branches retain their original three-way appearance controls. No preference library or translation service is required.
+Desktop appearance and language controls sit side by side as sliders, with Light/English on the left and Dark/简体中文 on the right. Their height follows the responsive contact button. Sun/moon and A/文 icons show the current selection, using the category filters’ shared colors. Mobile uses circular buttons with the same icons and click-to-toggle behavior. The default appearance follows the system, with no third button state; a system appearance change resumes automatic following after a manual toggle. Cookies retain manual choices between visits and provide the correct language during server rendering. A small inline script applies the appearance before rendering to avoid a bright flash. No preference library or translation service is required.
 
 English and Chinese profile and Reading content live in `app/content/site.ts` and `app/content/zh.ts`. Interface translations live in `app/content/translations.ts`; `useSiteContent` supplies reactive profile and Reading content, and `useJournal` supplies journal metadata for either language. Reading metadata links to primary sources.
 
@@ -55,7 +45,7 @@ date: "2026-09-18"
 category: research
 readingMinutes: 5
 image:
-  src: /media/journal/a-conversation-about-dglight/cover.jpg
+  src: /journal/a-conversation-about-dglight/cover.jpg
   alt: "A description of the cover image"
 ---
 
@@ -68,7 +58,7 @@ Write paragraphs separated by blank lines. Use **bold**, *italic*, and
 
 Use subsections, lists, quotations, and fenced code blocks when useful.
 
-![A description of the image](/media/journal/a-conversation-about-dglight/photo.jpg)
+![A description of the image](/journal/a-conversation-about-dglight/photo.jpg)
 ```
 
 `title`, `subtitle`, `date`, `category`, and `readingMinutes` are required. The subtitle also supplies card summaries and SEO descriptions. Dates must be valid ISO calendar dates and match the filename prefix. Categories are `research` or `travelling`; reading minutes must be a positive integer and are set manually. `author` defaults to the profile name in the article's language. The optional `image` field supplies the journal card image and requires `src` and `alt`.
@@ -77,18 +67,18 @@ Use `##` for section headings and `###` for subsections. The page already render
 
 ### Images, video, and audio
 
-Store local assets under `public/media/journal/<slug>/` and reference them using `/media/journal/<slug>/...` URLs. Direct HTTPS media URLs, including a future CMS's public asset URLs, also work. Relative paths beside Markdown files are not served automatically.
+Store local assets under `public/journal/<slug>/` and reference them using `/journal/<slug>/...` URLs. Direct HTTPS media URLs, including a future CMS's public asset URLs, also work. Relative paths beside Markdown files are not served automatically.
 
 Standard Markdown images use their description as alt text. For captions, video, or audio, use the shared media component:
 
 ```md
-::journal-media{kind="image" src="/media/journal/my-article/photo.jpg" alt="A quiet street in Kyoto" caption="An afternoon walk."}
+::journal-media{kind="image" src="/journal/my-article/photo.jpg" alt="A quiet street in Kyoto" caption="An afternoon walk."}
 ::
 
-::journal-media{kind="video" src="/media/journal/my-article/clip.mp4" poster="/media/journal/my-article/poster.jpg" caption="A short demonstration."}
+::journal-media{kind="video" src="/journal/my-article/clip.mp4" poster="/journal/my-article/poster.jpg" caption="A short demonstration."}
 ::
 
-::journal-media{kind="audio" src="/media/journal/my-article/recording.mp3" caption="A short recording."}
+::journal-media{kind="audio" src="/journal/my-article/recording.mp3" caption="A short recording."}
 ::
 ```
 
