@@ -1,7 +1,7 @@
 /** CMS-ready content shapes. Replace the local sources with an adapter later. */
 export interface ReadingItem { title: string; creator: string; kind: 'Book' | 'Article' | 'Paper'; status: 'Reading' | 'Finished'; finishedAt?: string; image?: { src: string; alt: string }; note: string; url: string }
 export interface ProfileTag { id: string; label: string }
-export interface Profile { name: string; displayName: string; tags: ProfileTag[]; image: { src: string; alt: string }; role: string; location: string; email: string; introduction: string; biography: string; workingStyle: string; aside: string; personalInterests: string; connectionInvitation: string }
+export interface Profile { name: string; displayName: string; tags: ProfileTag[]; image: { src: string; alt: string }; email: string; introduction: string; biography: string; workingStyle: string; aside: string; personalInterests: string; connectionInvitation: string }
 export interface SiteContent { profile: Profile; reading: ReadingItem[] }
 
 export const englishContent: SiteContent = {
@@ -14,8 +14,6 @@ export const englishContent: SiteContent = {
       { "id": "music", "label": "Violinist at heart" }
     ],
     "image": { "src": "/profile.jpg", "alt": "Portrait of Yu Chenbo" },
-    "role": "AI researcher & technologist",
-    "location": "Research, wherever it happens",
     "email": "yuchenbo0130@gmail.com",
     "introduction": "I explore language models, AI alignment, and agentic AI, and enjoy building practical solutions with AI tools in my spare time.",
     "biography": "I’m an AI researcher based in Singapore. My research interests are language models, AI alignment, and agentic AI. I’m thrilled to explore the mathematical foundations and inner workings of language models to better align them or design harnesses for problems I care about.",

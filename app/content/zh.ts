@@ -10,8 +10,6 @@ export const chineseContent: SiteContent = {
       { "id": "music", "label": "野生小提手" }
     ],
     "image": { "src": "/profile.jpg", "alt": "俞辰博的照片" },
-    "role": "人工智能研究者 · 技术爱好者",
-    "location": "研究，不限地点",
     "email": "yuchenbo0130@gmail.com",
     "introduction": "我探索语言模型、AI 对齐与智能体系统，也喜欢在业余时间用 AI 工具解决实际问题。",
     "biography": "我是一名人工智能研究者，关注语言模型、AI 对齐与智能体系统。我热衷于探索语言模型的数学基础与内部运作机制，以便更好地对齐它们，或设计外围控制框架，让它们更适合解决我关心的问题。",
