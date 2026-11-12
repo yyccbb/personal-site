@@ -12,3 +12,8 @@ node_modules
 
 # JetBrains IDEs
 .idea/
+
+# Claude Code (personal/local files; shared .claude/settings.json, commands, and agents stay tracked)
+.claude/settings.local.json
+.claude/worktrees/
+CLAUDE.local.md
